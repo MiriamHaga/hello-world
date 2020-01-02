@@ -1,0 +1,51 @@
+﻿<h2>Lista</h2>
+
+<form>
+    <!-- Campos:
+        - textarea seria mais fácil com enter nos itens se der
+          -->
+
+    <div class="form-group">
+        <label for="listItens" required>Itens</label>
+        <textarea id="listItens" class="form-control" ng-model="listItens" ng-list="&#10;" ng-trim="false"></textarea>
+        <p class="text-muted">
+            <small>Digite os itens da lista. Dê um ENTER para cada novo item.</small>
+        </p>
+    </div>
+</form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;ul class="list-group"&gt;</div>
+                <ng-container ng-repeat="listItem in listItens track by $index">
+                    <div class="code-line child-line">&lt;li class="list-group-item"&gt;</div>
+                        <div class="code-line child-line child-2">{{ listItem }}</div>
+                    <div class="code-line child-line">&lt;/li&gt;</div>
+                </ng-container>
+            <div class="code-line">&lt;/ul&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="listItem in listItens track by $index">
+                    {{ listItem }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

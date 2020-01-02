@@ -1,0 +1,61 @@
+﻿<h2>Figura</h2>
+
+<form>
+    <!-- Campos:
+        - link imagem
+        - texto alternativo imagem
+        - caption
+          -->
+
+    <p>
+        <small class="text-muted">Ajuste o link da imagem de acordo com o caminho no projeto.</small>
+    </p>
+    <div class="form-group">
+        <label for="figureAlt" required>Texto alternativo (alt)</label>
+        <input type="text" id="figureAlt" class="form-control" ng-model="figureAlt" value="Alt">
+    </div>
+    <div class="form-group">
+        <label for="figureCaption">Legenda (caption)</label>
+        <input type="text" id="figureCaption" class="form-control" ng-model="figureCaption" value="Caption">
+    </div>
+    <div class="form-group">
+        <label for="figureZoom">Possui zoom?</label>
+        <select id="figureZoom" class="form-control" ng-model="figureZoom">
+            <option value="1">Sim</option>
+            <option value="2">Não</option>
+        </select>
+    </div>
+</form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;figure&gt;</div>
+                <div class="code-line child-line">&lt;img src="images/img-default.jpg" class="img-responsive<ng-container ng-if="figureZoom == 1"> img-zoom</ng-container>" alt="{{figureAlt}}" width="200"&gt;</div>
+                <div class="code-line child-line" ng-if="figureCaption">&lt;figcaption ng-if="figureCaption"&gt;{{figureCaption}}&lt;/figcaption&gt;</div>
+            <div class="code-line">&lt;/figure&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <figure>
+                <!-- adicione a class img-zoom nas imagens para ativar a função para aumentá-las -->
+                <img src="images/img-default.jpg" class="img-responsive" ng-class="{'img-zoom': figureZoom == 1}" alt="{{figureAlt}}" width="200">
+                <figcaption ng-if="figureCaption">{{figureCaption}}</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>

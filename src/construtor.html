@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'lista';">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Construtor elementos</title>
+
+    <!-- STYLES CONSTRUTOR -->
+    <link href="stylesheets/construtor_styles/main.css" rel="stylesheet">
+
+    <!-- STYLES CURSO -->
+    <ng-container ng-if="preview === true">
+      <link href="stylesheets/curso_styles/main.css" rel="stylesheet">
+      <link href="stylesheets/curso_styles/unslider.css" rel="stylesheet">
+      <link href="stylesheets/curso_styles/unslider-dots.css" rel="stylesheet">
+    </ng-container>
+  </head>
+  <body>
+
+    <a href="#conteudo" class="sr-only sr-only-focusable">Pular para o conteúdo</a>
+
+    <div class="header-content__container">
+      <!-- Cabeçalho -->
+      <header class="main-header">
+        <h1>Construtor de elementos <small>(gerador de html)</small></h1>
+      </header>
+
+      <div class="nav-content__container">
+        <!-- Menu -->
+        <nav class="main-nav">
+          <ul>
+            <li><a ng-click="vm.itemMenuActive = 1" ng-class="{'active': vm.itemMenuActive === 1 }" href="#content1">Introdução</a></li>
+            <li><p><strong>Elementos</strong></p></li>
+            <li ng-repeat="element in elements">
+              <a ng-attr-href="#content{{ element.name }}" ng-click="vm.itemMenuActive = element.name" ng-class="{'active': vm.itemMenuActive === element.name }">{{ element.title }}</a>
+            </li>
+            <li><p><strong>Elementos interativos</strong></p></li>
+            <li ng-repeat="interactiveElement in interactiveElements">
+              <a ng-attr-href="#content{{ interactiveElement.name }}" ng-click="vm.itemMenuActive = interactiveElement.name" ng-class="{'active': vm.itemMenuActive === interactiveElement.name }">{{ interactiveElement.title }}</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Conteúdo do curso, manter dentro da div id='conteudo' para link de navegação acessível -->
+        <section class="main-content" id="conteudo">
+          <!-- CONTEUDO 1 - INTRODUCAO -->
+          <div ng-show="vm.itemMenuActive === 1" id="content1">
+            <introducao></introducao>
+          </div>
+
+          <!-- CONTEUDO 2 - BLOCO DESTACADO -->
+          <div ng-show="vm.itemMenuActive === 'bloco'" id="contentbloco">
+            <bloco></bloco>
+          </div>
+
+          <!-- CONTEUDO 3 - CITACAO -->
+          <div ng-show="vm.itemMenuActive === 'citacao'" id="contentcitacao">
+            <citacao></citacao>
+          </div>
+
+          <!-- CONTEUDO 4 - FIGURA -->
+          <div ng-show="vm.itemMenuActive === 'figura'" id="contentfigura">
+            <figura></figura>
+          </div>
+
+          <!-- CONTEUDO 5 - LISTA -->
+          <div ng-show="vm.itemMenuActive === 'lista'" id="contentlista">
+            <lista></lista>
+          </div>
+
+          <!-- CONTEUDO 6 - LISTA NUMERADA -->
+          <div ng-show="vm.itemMenuActive === 'listanumerada'" id="contentlistanumerada">
+            <listanumerada></listanumerada>
+          </div>
+
+          <!-- CONTEUDO 7 - TABELA -->
+          <div ng-show="vm.itemMenuActive === 'tabela'" id="contenttabela">
+            <tabela></tabela>
+          </div>
+
+          <!-- CONTEUDO 8 - TIMELINE -->
+          <div ng-show="vm.itemMenuActive === 'timeline'" id="contenttimeline">
+            <timeline></timeline>
+          </div>
+
+          <!-- CONTEUDO 9 - VIDEO -->
+          <div ng-show="vm.itemMenuActive === 'videodiretiva'" id="contentvideodiretiva">
+            <videodiretiva></videodiretiva>
+          </div>
+
+          <!-- CONTEUDO 10 - ABAS -->
+          <div ng-show="vm.itemMenuActive === 'abas'" id="contentabas">
+            <abas></abas>
+          </div>
+
+          <!-- CONTEUDO 11 - BOTAO -->
+          <div ng-show="vm.itemMenuActive === 'botao'" id="contentbotao">
+            <botao></botao>
+          </div>
+
+          <!-- CONTEUDO 12 - CARD -->
+          <div ng-show="vm.itemMenuActive === 'card'" id="contentcard">
+            <card></card>
+          </div>
+
+          <!-- CONTEUDO 13 - CARROSSEL -->
+          <div ng-show="vm.itemMenuActive === 'carrossel'" id="contentcarrossel">
+            <carrossel></carrossel>
+          </div>
+
+          <!-- CONTEUDO 14 - IMAGEM INTERATIVA -->
+          <div ng-show="vm.itemMenuActive === 'imageminterativa'" id="contentimageminterativa">
+            <imageminterativa></imageminterativa>
+          </div>
+
+          <!-- CONTEUDO 15 - MODAL -->
+          <div ng-show="vm.itemMenuActive === 'modal'" id="contentmodal">
+            <modal></modal>
+          </div>
+
+          <!-- CONTEUDO 16 - SANFONA -->
+          <div ng-show="vm.itemMenuActive === 'sanfona'" id="contentsanfona">
+            <sanfona></sanfona>
+          </div>
+
+          <!-- CONTEUDO 7 - TOOLTIP -->
+          <div ng-show="vm.itemMenuActive === 'tooltip'" id="contenttooltip">
+            <tooltip></tooltip>
+          </div>
+        </section>
+      </div>
+    </div>
+    <!-- Rodapé -->
+    <footer>
+      <div class="sr-only">
+        Fim do conteúdo dessa tela.
+        <!-- caso tenha uma próxima tela -->
+        <!--<a href="">Pule para a próxima tela.</a>-->
+      </div>
+    </footer>
+
+
+  <!-- SCRIPTS CONSTRUTOR -->
+  <script src="scripts/construtor_scripts/angular.min.js"></script>
+    <script src="scripts/construtor_scripts/mainApp.js"></script>
+
+  <!-- SCRIPTS CURSO -->
+  <script src="scripts/curso_scripts/jquery1.11.3.min.js"></script>
+  <script src="scripts/curso_scripts/bootstrap.min.js"></script>
+  <script src="scripts/curso_scripts/utils.js"></script>
+  <script src="scripts/curso_scripts/utils-acessivel.js"></script>
+  <script src="scripts/curso_scripts/unslider-min.js"></script>
+
+  </body>
+</html>

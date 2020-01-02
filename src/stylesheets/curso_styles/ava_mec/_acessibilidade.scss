@@ -1,0 +1,211 @@
+// Acessibilidade
+
+.contraste {
+  color: #ffffff;
+  background: #000000 !important;
+  
+  .tab-content {
+    border-top: 1px solid;
+  }
+  
+  a, .tooltip-item, a[target=_blank]:after, i {
+    color: yellow !important;
+    text-decoration: underline;
+  }
+  
+  *:not(.logo):not(img):not(.unslider-arrow) {
+    color: #ffffff;
+    background: #000000 !important;
+    border-color: yellow !important;
+  }
+  
+  .container h3:before {
+    color: #ffffff;
+  }
+  
+  header .contentHeader .nomes .nome-unidade .glyphicon {
+    color: #ffffff;
+  }
+
+  .main-header .max-width:before{
+    display:none;
+  }
+  
+  .more-image {
+    box-shadow: none;
+  }
+  
+  .tab-lateral .nav-tabs li.active:before {
+    color: yellow;
+  }
+
+  .tab-lateral .nav-tabs > li.active > a{
+    border:1px solid yellow;
+
+    &:after{
+      background: yellow;
+    }
+  }
+  
+  header {
+    box-shadow: 0 -31px 0 #000000 inset;
+  }
+  
+  .aba-fixa-modal span, .aba-fixa-modal {
+    color: yellow !important;
+  }
+  
+  .telasProgresso .progressBar span {
+    background: yellow !important;
+  }
+  
+  .lista-padrao li {
+    box-shadow: -5px 0 0 yellow;
+  }
+  
+  .sequencia-baixo {
+    box-shadow: 0 -5px 0 yellow inset, 2px 2px 1px rgba(0, 0, 0, 0.15);
+    
+    &:hover {
+      box-shadow: 0 -180px 0 yellow inset, 2px 2px 1px rgba(0, 0, 0, 0.15);
+      color: black !important;
+    }
+  }
+  .btnPadrao.sequencia {
+    box-shadow: -5px 0 0 yellow inset, 2px 2px 1px rgba(0, 0, 0, 0.15);
+    
+    &:hover {
+      box-shadow: -768px 0 0 yellow inset, 2px 2px 1px rgba(0, 0, 0, 0.15);
+      color: black !important;
+    }
+  }
+  .btnPadrao.sequencia:after {
+    color: yellow !important;
+  }
+  .btnPadrao.sequencia-baixo:after {
+    color: yellow !important;
+  }
+  .telasProgresso .progressButton a.ativo {
+    box-shadow: 0 -3px 0 yellow inset;
+  }
+  .telasProgresso .progressButton a.selected:hover {
+    background: yellow !important;
+    box-shadow: 0 -3px 0 yellow inset;
+    color: black !important;
+  }
+  .quiz-numero .quiz-numero-conteudo > div ul li {
+    border: 1px solid yellow !important;
+    
+    span {
+      background: yellow !important;
+      color: black !important;
+    }
+  }
+  .iconeMenor {
+    box-shadow: 0 -60px 0 yellow inset;
+  }
+
+  .galeria .nav-tabs li.active::before{
+    color: yellow;
+  }
+
+  .unslider .unslider-arrow.prev{
+    border-right: 12px solid yellow;
+  }
+
+  .unslider .unslider-arrow.next{
+    border-left: 12px solid yellow;
+  }
+
+  .list-group .list-group-item:before{
+    background:#fff;
+  }
+
+  .list-group .list-group-item.active:before{
+    background:yellow;
+  }
+
+  blockquote:before, blockquote:after{
+    color:#fff;
+  }
+}
+
+.fontMenor {
+  font-size: 52.5%;
+}
+
+.fontMaior {
+  font-size: 72.5%;
+  
+  .telasProgresso .progressButton {
+    width: calc(100% - 200px);
+  }
+  
+  .elemento1 .elemento1-tela {
+    width: calc(100% - 450px);
+  }
+}
+
+.acessibilidade {
+  text-align: right;
+  width: 150px;
+  min-width: 150px;
+  margin-top: 0 !important;
+  /*position: absolute;
+  right: 300px;
+  bottom:-29px;
+  z-index:1;*/
+  
+  * {
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+  }
+  
+  a {
+    //background: darken($branco, 80%);
+    border:1px solid rgba(0,0,0,.1);
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    color: $text-color;
+    vertical-align: top;
+    @include transition(all 0.2s ease-out);
+    background: #fff;
+    @include border-radius(5px);
+    @include box-shadow(0 1px 3px rgba(0,0,0,.2));
+
+    &:hover {
+      text-decoration: none;
+      background:#eee;
+    }
+  }
+  
+  .btnMenor {
+    font-size: 1.5rem !important;
+    padding-top: 4px;
+  }
+  
+  .btnNormal {
+    font-size: 1.7rem !important;
+    padding-top: 2px;
+  }
+  
+  .btnMaior {
+    font-size: 1.9rem !important;
+    padding-top: 0;
+  }
+  
+  .btnContraste {
+    font-size: 1.7rem !important;
+    padding-top: 1px;
+    background: lighten($cor-terciaria,20%);
+    color:#fff;
+
+    &:hover {
+      text-decoration: none;
+      background: lighten($cor-terciaria,20%);
+    }
+  }
+}

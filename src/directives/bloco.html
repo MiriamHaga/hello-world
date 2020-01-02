@@ -1,0 +1,95 @@
+﻿<h2>Bloco destacado</h2>
+
+<form>
+    <!-- Campos:
+         - título
+         - texto
+         - checkbox imagem ou ícone ou nenhum elemento grafico
+         - conforme checkbox, campo para adicionar link da imagem ou select com alguns ícones material ou bootstrap -->
+
+    <div class="form-group">
+        <label for="blockTitle">Título</label>
+        <input type="text" id="blockTitle" class="form-control" ng-model="blockTitle" value="Título">
+    </div>
+    <div class="form-group">
+        <label for="blockText" required>Texto</label>
+        <textarea id="blockText" class="form-control" ng-model="blockText"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="blockSelect">Elemento adicional</label>
+        <select id="blockSelect" class="form-control" ng-model="blockImage">
+            <option value="1">Sem elemento gráfico</option>
+            <option value="2">Com imagem</option>
+            <option value="3">Com ícone do material (se o curso tiver incorporado)</option>
+        </select>
+        <p ng-if="blockImage == 2">
+            <small class="text-muted">Ajuste o link da imagem de acordo com o caminho no projeto.</small>
+        </p>
+        <p ng-if="blockImage == 3">
+            <small class="text-muted">Ajuste o modelo de ícone de acordo com o conteúdo.</small>
+        </p>
+    </div>
+</form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dentro de um bloco em destaque&lt;/div&gt;</div>
+            <div class="code-line">&lt;div class="main-box"&gt;</div>
+
+                <ng-container ng-if="blockImage == 2">
+                    <div class="code-line child-line">&lt;div class="main-box__icon"&gt;</div>
+                        <div class="code-line child-line child-2">&lt;img src="images/img-icone.jpg" alt=""&gt;</div>
+                    <div class="code-line child-line">&lt;/div&gt;</div>
+                </ng-container>
+
+                <ng-container ng-if="blockImage == 3">
+                    <div class="code-line child-line">&lt;div class="main-box__icon"&gt;</div>
+                        <div class="code-line child-line child-2">&lt;i class="material-icons" aria-hidden="true"&gt;message&lt;/i&gt;</div>
+                    <div class="code-line child-line">&lt;/div&gt;</div>
+                </ng-container>
+
+                <div class="code-line child-line">&lt;div class="main-box__content"&gt;</div>
+                    <div class="code-line child-line child-2" ng-if="blockTitle">&lt;h4&gt;{{blockTitle}}&lt;/h4&gt;</div>
+                    <div class="code-line child-line child-2">&lt;p&gt;{{blockText}}&lt;/p&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <div class="sr-only">Conteúdo dentro de um bloco em destaque</div>
+            <div class="main-box">
+                <ng-container ng-if="blockImage == 2">
+                    <div class="main-box__icon">
+                        <img src="images/img-icone.jpg" alt="">
+                    </div>
+                </ng-container>
+
+                <ng-container ng-if="blockImage == 3">
+                    <div class="main-box__icon">
+                        <i class="material-icons" aria-hidden="true" style="font-size:48px;">message</i>
+                    </div>
+                </ng-container>
+
+                <div class="main-box__content">
+                    <h4 ng-if="blockTitle">{{blockTitle}}</h4>
+                    <p>{{blockText}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

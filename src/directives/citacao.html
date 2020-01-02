@@ -1,0 +1,51 @@
+﻿<h2>Citação</h2>
+
+<form>
+    <!-- Campos:
+        - texto
+        - autor/fonte se houver
+          -->
+
+    <div class="form-group">
+        <label for="citeText" required>Texto</label>
+        <textarea id="citeText" class="form-control" ng-model="citeText"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="citeAuthor">Autor</label>
+        <input type="text" id="citeAuthor" class="form-control" ng-model="citeAuthor" value="Autor">
+    </div>
+</form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;blockquote&gt;</div>
+                <div class="code-line child-line">&lt;p&gt;&lt;em&gt;"{{citeText}}"&lt;/em&gt;&lt;/p&gt;</div>
+                <ng-container ng-if="citeAuthor">
+                    <div class="code-line child-line">&lt;footer class="author"&gt;{{citeAuthor}}&lt;/footer&gt;</div>
+                </ng-container>
+            <div class="code-line">&lt;/blockquote&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <blockquote>
+                <p><em>"{{citeText}}"</em></p>
+                <footer class="author" ng-if="citeAuthor">{{citeAuthor}}</footer>
+            </blockquote>
+        </div>
+    </div>
+</div>
