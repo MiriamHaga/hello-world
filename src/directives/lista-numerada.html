@@ -4,4 +4,48 @@
     <!-- Campos:
         - textarea seria mais fácil com enter nos itens se der
           -->
+
+    <div class="form-group">
+        <label for="listNumberedItens" required>Itens</label>
+        <textarea id="listNumberedItens" class="form-control" ng-model="listNumberedItens" ng-list="&#10;" ng-trim="false" style="height:140px;"></textarea>
+        <p class="text-muted">
+            <small>Digite os itens da lista. Dê um ENTER para cada novo item.</small>
+        </p>
+    </div>
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;ul class="list-group list-group-numbered"&gt;</div>
+            <ng-container ng-repeat="listNumberedItem in listNumberedItens track by $index">
+                <div class="code-line child-line">&lt;li class="list-group-item"&gt;</div>
+                <div class="code-line child-line child-2">&lt;span class="list-group-item__number"&gt;{{ $index+1 }}&lt;/span&gt;{{ listNumberedItem }}</div>
+                <div class="code-line child-line">&lt;/li&gt;</div>
+            </ng-container>
+            <div class="code-line">&lt;/ul&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <ul class="list-group list-group-numbered">
+                <li class="list-group-item" ng-repeat="listNumberedItem in listNumberedItens track by $index">
+                    <span class="list-group-item__number">{{ $index+1 }}</span>{{ listNumberedItem }}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -54,6 +54,93 @@ mainApp.controller('mainController', function($scope) {
         title: "Tooltip"
     }];
     $scope.interactiveElement = "";
+
+    // TABLE LINES
+    $scope.tableLines = [];
+
+    $scope.addTableLine = function(){
+        if ( $scope.tableLinesContent.length === $scope.tableColumns.length ){
+            $scope.tableLines.push({ tableLinesContents:$scope.tableLinesContent });
+            //alert('ok');
+            $scope.tableLinesContentError = false;
+            $scope.tableLinesContent = '';
+        } else{
+            //alert('O número de itens na linha não coincide com o número de colunas.');
+            $scope.tableLinesContentError = true;
+        }
+    };
+
+    $scope.deleteTableLine = function(tableLine){
+        var index = $scope.tableLines.indexOf(tableLine);
+        $scope.tableLines.splice(index, 1);
+    };
+
+    $scope.moveTableLine = function(direction, item){
+        var index = $scope.tableLines.indexOf(item);
+
+        if ( direction === 'up'){
+            if (index <= 0){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.tableLines.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.tableLines.splice(index - 1, 0, removed[0]);
+            }
+        } else {
+            if (index >= $scope.tableLines.length){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.tableLines.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.tableLines.splice(index + 1, 0, removed[0]);
+            }
+        }
+    };
+
+    // TIMELINE ITEMS
+    $scope.timelineItems = [];
+
+    $scope.addTimelineItem = function(){
+        $scope.timelineItems.push({
+            timelineItemDate:$scope.timelineDate,
+            timelineItemTitle:$scope.timelineTitle,
+            timelineItemText:$scope.timelineText
+        });
+        $scope.timelineDate = '';
+        $scope.timelineTitle = '';
+        $scope.timelineText = '';
+    };
+
+    $scope.deleteTimelineItem = function(timelineItem){
+        var index = $scope.timelineItems.indexOf(timelineItem);
+        $scope.timelineItems.splice(index, 1);
+    };
+
+    $scope.moveTimelineItem = function(direction, item){
+        var index = $scope.timelineItems.indexOf(item);
+
+        if ( direction === 'up'){
+            if (index <= 0){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.timelineItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.timelineItems.splice(index - 1, 0, removed[0]);
+            }
+        } else {
+            if (index >= $scope.timelineItems.length){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.timelineItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.timelineItems.splice(index + 1, 0, removed[0]);
+            }
+        }
+    };
 });
 
 // INTRODUCAO

@@ -26,7 +26,7 @@
 
         <div class="code-container">
             <div class="code-line">&lt;blockquote&gt;</div>
-                <div class="code-line child-line">&lt;p&gt;&lt;em&gt;"{{citeText}}"&lt;/em&gt;&lt;/p&gt;</div>
+                <div class="code-line child-line">&lt;p&gt;&lt;em&gt;&lt;span class="quote"&gt;"&lt;/span&gt;{{citeText}}&lt;span class="quote"&gt;"&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;</div>
                 <ng-container ng-if="citeAuthor">
                     <div class="code-line child-line">&lt;footer class="author"&gt;{{citeAuthor}}&lt;/footer&gt;</div>
                 </ng-container>
@@ -43,7 +43,7 @@
     <div class="generated-preview" ng-if="preview">
         <div class="container">
             <blockquote>
-                <p><em>"{{citeText}}"</em></p>
+                <p><em><span class="quote">"</span>{{citeText}}<span class="quote">"</span></em></p>
                 <footer class="author" ng-if="citeAuthor">{{citeAuthor}}</footer>
             </blockquote>
         </div>

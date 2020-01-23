@@ -4868,6 +4868,21 @@ body {
 video, img, iframe {
   max-width: 100%; }
 
+.d-flex {
+  display: flex; }
+
+.flex-fill {
+  flex: 1; }
+
+.flex-wrap {
+  flex-wrap: wrap; }
+
+.align-items-center {
+  align-items: center; }
+
+.justify-content-center {
+  justify-content: center; }
+
 .main-header {
   padding: 16px;
   background: #333;
@@ -4965,7 +4980,7 @@ label[required]:before {
   margin: 10px !important;
   width: 36px !important;
   height: 36px !important;
-  min-height: none !important; }
+  min-height: 0 !important; }
   .previewing .btn-preview, .previewing .btn-preview i {
     font-size: 20px !important; }
   .previewing .btn-preview:after, .previewing .btn-preview:before {
@@ -5022,5 +5037,21 @@ label[required]:before {
         text-indent: 210px; }
       .code-container .code-line.child-line.child-10 {
         text-indent: 234px; }
+
+.btn-primary.btn.btn-ico, .btn-default.btn.btn-ico {
+  padding: 6px 6px;
+  text-align: center;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  justify-content: center; }
+  .btn-primary.btn.btn-ico i, .btn-default.btn.btn-ico i {
+    font-size: 20px;
+    line-height: 18px; }
+
+form .list-group-item {
+  padding: 4px 4px 4px 16px; }
 
 /*# sourceMappingURL=main.css.map */

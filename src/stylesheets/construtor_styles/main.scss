@@ -14,8 +14,28 @@ body {
   line-height: $line-height-base;
 }
 
-video, img, iframe{
+video, img, iframe{  
   max-width: 100%;
+}
+
+.d-flex{
+  display: flex;
+}
+
+.flex-fill{
+  flex:1;
+}
+
+.flex-wrap{
+  flex-wrap:wrap;
+}
+
+.align-items-center{
+  align-items: center;
+}
+
+.justify-content-center{
+  justify-content: center;
 }
 
 .main-header{
@@ -125,7 +145,7 @@ label[required]:before{
     margin: 10px !important;
     width: 36px !important;
     height: 36px !important;
-    min-height: none !important;
+    min-height: 0 !important;
 
     &, i{
       font-size: 20px !important;
@@ -218,4 +238,26 @@ label[required]:before{
       }
     }
   }
+}
+
+.btn-primary, .btn-default{
+  &.btn.btn-ico{
+    padding: 6px 6px;
+    text-align: center;
+    margin: 2px;
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+
+    i{
+      font-size: 20px;
+      line-height: 18px;
+    }
+  }
+}
+
+form .list-group-item{
+  padding: 4px 4px 4px 16px;
 }

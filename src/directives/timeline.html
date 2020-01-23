@@ -9,4 +9,84 @@
 
           - pensar: troca ordem
           -->
+
+    <div class="form-group">
+        <label for="timelineDate" required>Data</label>
+        <input type="text" id="timelineDate" class="form-control" ng-model="timelineDate" />
+        <p class="text-muted">
+            <small>Digite a data no formato que preferir.</small>
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="timelineTitle">Título</label>
+        <input type="text" id="timelineTitle" class="form-control" ng-model="timelineTitle" />
+    </div>
+    <div class="form-group">
+        <label for="timelineText" required>Texto</label>
+        <textarea id="timelineText" class="form-control" ng-model="timelineText"></textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addTimelineItem()">Adicionar item</button>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center" ng-repeat="timelineItem in timelineItems track by $index">
+            <span class="flex-fill">{{ timelineItem.timelineItemDate}}</span>
+            <button class="btn btn-default btn-ico" ng-click="deleteTimelineItem(timelineItem)"><i class="material-icons">delete</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveTimelineItem('up', timelineItem)"><i class="material-icons">arrow_upward</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveTimelineItem('down', timelineItem)"><i class="material-icons">arrow_downward</i></button>
+        </li>
+    </ul>
 </form>
+
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+        <div class="code-container">
+            <div class="code-line">&lt;div class="timeline timeline-vertical2"&gt;</div>
+                <div class="code-line child-line">&lt;ul class="timeline-vertical__list" role="tablist"&gt;</div>
+                    <ng-container ng-repeat="timelineItem in timelineItems track by $index">
+                        <div class="code-line child-line child-2">&lt;li&gt;</div>
+                            <div class="code-line child-line child-3">&lt;p class="timeline-vertical__list__title"&gt;</div>
+                                <div class="code-line child-line child-4">&lt;strong&gt;{{ timelineItem.timelineItemDate }}&lt;/strong&gt;</div>
+                            <div class="code-line child-line child-3">&lt;/p&gt;</div>
+                            <div class="code-line child-line child-3">&lt;div class="timeline-vertical__list__content"&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="timelineItem.timelineItemTitle">&lt;p&gt;&lt;strong&gt;{{ timelineItem.timelineItemTitle }}&lt;/strong&gt;&lt;/p&gt;</div>
+                                <div class="code-line child-line child-4">&lt;p&gt;{{ timelineItem.timelineItemText }}&lt;/p&gt;</div>
+                            <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                        <div class="code-line child-line child-2">&lt;/li&gt;</div>
+                    </ng-container>
+                <div class="code-line child-line">&lt;/ul&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <div class="timeline timeline-vertical2">
+                <ul class="timeline-vertical__list" role="tablist">
+                    <li ng-repeat="timelineItem in timelineItems track by $index">
+                        <p class="timeline-vertical__list__title">
+                            <strong>{{ timelineItem.timelineItemDate }}</strong>
+                        </p>
+                        <div class="timeline-vertical__list__content">
+                            <p ng-if="timelineItem.timelineItemTitle"><strong>{{ timelineItem.timelineItemTitle }}</strong></p>
+                            <p>{{ timelineItem.timelineItemText }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

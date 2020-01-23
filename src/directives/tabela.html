@@ -9,4 +9,96 @@
 
           - pensar: linha título, mescla colunas/linhas, troca ordem
           -->
+    <p class="text-muted">
+        <small>Ao preencher tomar cuidado para manter o número de itens em cada linha de acordo com o número de colunas para não quebrar.</small>
+    </p>
+
+    <div class="form-group">
+        <label for="tableColumns" required>Colunas</label>
+        <textarea id="tableColumns" class="form-control" ng-model="tableColumns" ng-list="&#10;" ng-trim="false" style="height:80px;"></textarea>
+        <p class="text-muted">
+            <small>Digite os textos das colunas da tabela. Dê um ENTER para cada novo item.</small>
+        </p>
+    </div>
+    <div class="form-group">
+        <label for="tableLinesContent" required>Linha</label>
+        <textarea id="tableLinesContent" class="form-control" ng-model="tableLinesContent" ng-list="&#10;" ng-trim="false" style="height:80px;"></textarea>
+        <p class="text-muted">
+            <small>Digite os textos da linha da tabela. Dê um ENTER para cada item de uma nova coluna. Clique em Adicionar linha para inserir.</small>
+        </p>
+        <div class="alert alert-warning" role="alert" ng-if="tableLinesContentError">O número de itens na linha não coincide com o número de colunas.</div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addTableLine()">Adicionar linha</button>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center" ng-repeat="tableLine in tableLines track by $index">
+            <span class="flex-fill">{{ tableLine.tableLinesContents }}</span>
+            <button class="btn btn-default btn-ico" ng-click="deleteTableLine(tableLine)"><i class="material-icons">delete</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveTableLine('up', tableLine)"><i class="material-icons">arrow_upward</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveTableLine('down', tableLine)"><i class="material-icons">arrow_downward</i></button>
+        </li>
+    </ul>
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+        <div class="code-container">
+            <div class="code-line">&lt;div class="table-responsive"&gt;</div>
+                <div class="code-line child-line">&lt;table class="table"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;thead&gt;</div>
+                        <div class="code-line child-line child-3">&lt;tr&gt;</div>
+                            <ng-container ng-repeat="tableColumn in tableColumns track by $index">
+                                <div class="code-line child-line child-4">&lt;th&gt;{{ tableColumn }}&lt;/th&gt;</div>
+                            </ng-container>
+                         <div class="code-line child-line child-3">&lt;/tr&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/thead&gt;</div>
+                    <div class="code-line child-line child-2">&lt;tbody&gt;</div>
+                        <ng-container ng-repeat="tableLine in tableLines track by $index">
+                            <div class="code-line child-line child-3">&lt;tr&gt;</div>
+                                <ng-container ng-repeat="tableLinesContent in tableLine.tableLinesContents track by $index">
+                                    <div class="code-line child-line child-4">&lt;td&gt;{{ tableLinesContent }}&lt;/td&gt;</div>
+                                </ng-container>
+                            <div class="code-line child-line child-3">&lt;/tr&gt;</div>
+                        </ng-container>
+                    <div class="code-line child-line child-2">&lt;/tbody&gt;</div>
+                <div class="code-line child-line">&lt;/table&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th ng-repeat="tableColumn in tableColumns track by $index">
+                            {{ tableColumn }}
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="tableLine in tableLines track by $index">
+                        <td ng-repeat="tableLinesContent in tableLine.tableLinesContents track by $index">
+                            {{ tableLinesContent }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
