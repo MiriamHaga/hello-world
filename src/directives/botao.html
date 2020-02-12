@@ -6,5 +6,131 @@
          - link
          - modo abertura do link (target)
          - checkbox ícone ou nenhum elemento grafico
-         - conforme checkbox, select com alguns ícones material ou bootstrap -->
+         - conforme checkbox, select com alguns ícones material ou bootstrap
+         - é btn-primary ou default -->
+
+    <div class="form-group">
+        <label for="buttonText" required>Texto</label>
+        <input type="text" id="buttonText" class="form-control" ng-model="buttonText">
+    </div>
+    <div class="form-group">
+        <label for="buttonLink" required>Link</label>
+        <input type="text" id="buttonLink" class="form-control" ng-model="buttonLink">
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="buttonOpening">Modo de abertura</label>
+                <select id="buttonOpening" class="form-control" ng-model="buttonOpening" ng-init="buttonOpening='_blank'">
+                    <option value="_blank">Nova guia</option>
+                    <option value="_self">Mesma guia</option>
+                    <option value="_parent">Guia pai (no caso de iframe)</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="buttonIcon">Ícone (algumas opções do <a href="https://material.io/resources/icons/?icon=layers&style=baseline" target="_blank">Google Material</a>)</label>
+                <select id="buttonIcon" class="form-control" ng-model="buttonIcon" ng-init="buttonIcon='1'">
+                    <option value="1">Sem ícone</option>
+                    <option value="2">Ícone de papel</option>
+                    <option value="3">Ícone de avançar</option>
+                    <option value="4">Ícone de voltar</option>
+                    <option value="5">Ícone de check</option>
+                    <option value="6">Ícone de lápis</option>
+                    <option value="7">Ícone de positivo</option>
+                    <option value="8">Ícone de estrela</option>
+                    <option value="9">Ícone de play</option>
+                    <option value="10">Ícone de balão de fala</option>
+                    <option value="11">Ícone de download</option>
+                    <option value="12">Ícone de upload</option>
+                    <option value="13">Ícone de relatório</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="radio" id="buttonPrimary" ng-model="buttonType" ng-init="buttonType='1'" value="1" name="buttonType">
+                        <label for="buttonPrimary">Botão principal</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="radio" id="buttonDefault" ng-model="buttonType" value="2" name="buttonType">
+                        <label for="buttonDefault">Botão padrão</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">
+            <ng-container ng-if="buttonType=='1'">
+            &lt;a class="btn btn-primary" href="{{ buttonLink }}" target="{{ buttonOpening }}"&gt;
+            </ng-container>
+            <ng-container ng-if="buttonType=='2'">
+            &lt;a class="btn btn-default" href="{{ buttonLink }}" target="{{ buttonOpening }}"&gt;
+            </ng-container>
+            </div>
+            </ng-container>
+                <div class="code-line child-line">
+                <ng-container ng-if="buttonIcon=='2'">&lt;i class="material-icons" aria-hidden="true">description&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='3'">&lt;i class="material-icons" aria-hidden="true">arrow_forward&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='4'">&lt;i class="material-icons" aria-hidden="true">arrow_back&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='5'">&lt;i class="material-icons" aria-hidden="true">check&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='6'">&lt;i class="material-icons" aria-hidden="true">edit&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='7'">&lt;i class="material-icons" aria-hidden="true">thumb_up_alt&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='8'">&lt;i class="material-icons" aria-hidden="true">star&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='9'">&lt;i class="material-icons" aria-hidden="true">play_circle_outline&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='10'">&lt;i class="material-icons" aria-hidden="true">question_answer&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='11'">&lt;i class="material-icons" aria-hidden="true">get_app&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='12'">&lt;i class="material-icons" aria-hidden="true">publish&lt;/i&gt;</ng-container>
+                <ng-container ng-if="buttonIcon=='13'">&lt;i class="material-icons" aria-hidden="true">insert_chart&lt;/i&gt;</ng-container>
+                </div>
+                <div class="code-line child-line">&lt;span&gt;{{ buttonText }}&lt;/span&gt;</div>
+            <div class="code-line">&lt;/a&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <a class="btn" ng-class="{'btn-primary' : buttonType=='1', 'btn-default' : buttonType=='2'}" href="{{ buttonLink }}" ng-attr-target="{{ buttonOpening }}">
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='2'">description</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='3'">arrow_forward</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='4'">arrow_back</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='5'">check</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='6'">edit</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='7'">thumb_up_alt</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='8'">star</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='9'">play_circle_outline</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='10'">question_answer</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='11'">get_app</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='12'">publish</i>
+                <i class="material-icons" aria-hidden="true" ng-if="buttonIcon=='13'">insert_chart</i>
+
+                <span>{{ buttonText }}</span>
+            </a>
+        </div>
+    </div>
+</div>
+
