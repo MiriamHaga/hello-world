@@ -1,3 +1,273 @@
 ﻿<h2>Abas (Tabs)</h2>
-<!-- considerar se tem mais de um elemento como este na tela, talvez um campo para id ou mais de um? quantos? -->
-<!-- opções horizontal, vertical ou timeline -->
+
+<form>
+    <!-- Campos:
+            - título aba
+            - conteudo aba
+              -->
+    <!-- considerar se tem mais de um elemento como este na tela, talvez um campo para id ou mais de um? quantos? -->
+    <!-- opções horizontal, vertical ou timeline -->
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="tabsType" required>Tipo</label>
+                <select id="tabsType" class="form-control" ng-model="tabsType" ng-init="tabsType='1'">
+                    <option value="1" selected>Horizontal</option>
+                    <option value="2">Vertical</option>
+                    <option value="3">Timeline</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="tabsId" required>Id do elemento</label>
+                <input type="number" id="tabsId" class="form-control" ng-model="tabsId" ng-init="tabsId=1" value="1"/>
+                <p class="text-muted">
+                    <small>Caso tenha mais de um elemento como este na mesma tela é necessário definir um novo id.</small>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tabTitle" required>Título da aba</label>
+        <input type="text" id="tabTitle" class="form-control" ng-model="tabTitle" />
+    </div>
+    <div class="form-group">
+        <label for="tabText" required>Conteúdo da aba</label>
+        <textarea id="tabText" class="form-control" ng-model="tabText"></textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addTab()">Adicionar item</button>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center" ng-repeat="tabItem in tabItems track by $index">
+            <span class="flex-fill">{{ tabItem.tabItemTitle }}</span>
+            <button class="btn btn-default btn-ico" ng-click="deleteTab(tabItem)"><i class="material-icons">delete</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveTab('up', tabItem)"><i class="material-icons">arrow_upward</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveTab('down', tabItem)"><i class="material-icons">arrow_downward</i></button>
+        </li>
+    </ul>
+</form>
+
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+        <div class="code-container">
+            <!-- Abas horizontais -->
+            <ng-container ng-if="tabsType === '1'">
+                <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dividido em abas&lt;/div&gt;</div>
+                <div class="code-line">&lt;div class="galeria"&gt;</div>
+                    <div class="code-line child-line">&lt;div class="container-galeria"&gt;</div>
+                        <div class="code-line child-line child-2">&lt;ul class="nav nav-tabs" role="tablist"&gt;</div>
+                            <ng-container ng-repeat="tabItem in tabItems track by $index">
+                                <ng-container ng-if="$index == 0">
+                                    <div class="code-line child-line child-3">&lt;li class="active" aria-hidden="true"&gt;</div>
+                                </ng-container>
+                                <ng-container ng-if="$index != 0">
+                                    <div class="code-line child-line child-3">&lt;li aria-hidden="true"&gt;</div>
+                                </ng-container>
+                                    <div class="code-line child-line child-4">&lt;a href="#gal{{ tabsId }}{{ $index }}" data-toggle="tab"&gt;{{ tabItem.tabItemTitle }}&lt;/a&gt;</div>
+                                <div class="code-line child-line child-3">&lt;/li&gt;</div>
+                            </ng-container>
+                        <div class="code-line child-line child-2">&lt;/ul&gt;</div>
+                        <div class="code-line child-line child-2">&lt;div class="tab-content"&gt;</div>
+                            <ng-container ng-repeat="tabItem in tabItems track by $index">
+                                <ng-container ng-if="$index == 0">
+                                    <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane active" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
+                                </ng-container>
+                                <ng-container ng-if="$index != 0">
+                                    <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
+                                </ng-container>
+                                    <div class="code-line child-line child-4">&lt;h4 class="sr-only" id="gal{{ tabsId }}content{{ $index }}"&gt;{{ tabItem.tabItemTitle }}&lt;/h4&gt;</div>
+                                    <div class="code-line child-line child-4">&lt;p&gt;{{ tabItem.tabItemText }}&lt;/p&gt;</div>
+                                    <!-- navegacao acessibilidade -->
+                                    <div class="code-line child-line child-4" ng-if="$index == 0">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable"&gt;Ir para próxima aba.&lt;/a&gt;</div>
+                                    <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Voltar para aba anterior.&lt;/a&gt;</div>
+                                    <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable pull-right"&gt;Ir para próxima aba.&lt;/a&gt;</div>
+                                    <div class="code-line child-line child-4" ng-if="$index == tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Última aba. Voltar para aba anterior.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                            </ng-container>
+                        <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                    <div class="code-line child-line">&lt;/div&gt;</div>
+                <div class="code-line">&lt;/div&gt;</div>
+            </ng-container>
+
+            <!-- Abas verticais -->
+            <ng-container ng-if="tabsType === '2'">
+                <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dividido em abas&lt;/div&gt;</div>
+                    <div class="code-line">&lt;div class="galeria galeria-vertical"&gt;</div>
+                        <div class="code-line child-line">&lt;div class="container-galeria"&gt;</div>
+                            <div class="code-line child-line child-2">&lt;ul class="nav nav-tabs" role="tablist"&gt;</div>
+                            <ng-container ng-repeat="tabItem in tabItems track by $index">
+                                <ng-container ng-if="$index == 0">
+                                    <div class="code-line child-line child-3">&lt;li class="active" aria-hidden="true"&gt;</div>
+                                </ng-container>
+                                <ng-container ng-if="$index != 0">
+                                    <div class="code-line child-line child-3">&lt;li aria-hidden="true"&gt;</div>
+                                </ng-container>
+                                <div class="code-line child-line child-4">&lt;a href="#gal{{ tabsId }}{{ $index }}" data-toggle="tab"&gt;{{ tabItem.tabItemTitle }}&lt;/a&gt;</div>
+                                <div class="code-line child-line child-3">&lt;/li&gt;</div>
+                            </ng-container>
+                            <div class="code-line child-line child-2">&lt;/ul&gt;</div>
+                            <div class="code-line child-line child-2">&lt;div class="tab-content"&gt;</div>
+                            <ng-container ng-repeat="tabItem in tabItems track by $index">
+                                <ng-container ng-if="$index == 0">
+                                    <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane active" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
+                                </ng-container>
+                                <ng-container ng-if="$index != 0">
+                                    <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
+                                </ng-container>
+                                <div class="code-line child-line child-4">&lt;h4 class="sr-only" id="gal{{ tabsId }}content{{ $index }}"&gt;{{ tabItem.tabItemTitle }}&lt;/h4&gt;</div>
+                                <div class="code-line child-line child-4">&lt;p&gt;{{ tabItem.tabItemText }}&lt;/p&gt;</div>
+                                <!-- navegacao acessibilidade -->
+                                <div class="code-line child-line child-4" ng-if="$index == 0">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable"&gt;Ir para próxima aba.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Voltar para aba anterior.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable pull-right"&gt;Ir para próxima aba.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="$index == tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Última aba. Voltar para aba anterior.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                            </ng-container>
+                        <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                    <div class="code-line child-line">&lt;/div&gt;</div>
+                <div class="code-line">&lt;/div&gt;</div>
+            </ng-container>
+
+            <!-- Timeline -->
+            <ng-container ng-if="tabsType === '3'">
+                <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dividido em abas&lt;/div&gt;</div>
+                    <div class="code-line">&lt;div class="galeria galeria-vertical galeria-timeline"&gt;</div>
+                        <div class="code-line child-line">&lt;div class="container-galeria"&gt;</div>
+                            <div class="code-line child-line child-2">&lt;ul class="nav nav-tabs" role="tablist"&gt;</div>
+                                <div class="code-line child-line child-3">&lt;li aria-hidden="true"&gt;&lt;a href="#" class="tab-back"&gt;&lt;i class="material-icons"&gt;keyboard_arrow_up&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;</div>
+                                <ng-container ng-repeat="tabItem in tabItems track by $index">
+                                    <ng-container ng-if="$index == 0">
+                                        <div class="code-line child-line child-3">&lt;li class="active" aria-hidden="true"&gt;</div>
+                                    </ng-container>
+                                    <ng-container ng-if="$index != 0">
+                                        <div class="code-line child-line child-3">&lt;li aria-hidden="true"&gt;</div>
+                                    </ng-container>
+                                    <div class="code-line child-line child-4">&lt;a href="#gal{{ tabsId }}{{ $index }}" data-toggle="tab"&gt;{{ tabItem.tabItemTitle }}&lt;/a&gt;</div>
+                                    <div class="code-line child-line child-3">&lt;/li&gt;</div>
+                                </ng-container>
+                                <div class="code-line child-line child-3">&lt;li aria-hidden="true"&gt;&lt;a href="#" class="tab-next"&gt;&lt;i class="material-icons"&gt;keyboard_arrow_down&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;</div>
+
+                            <div class="code-line child-line child-2">&lt;/ul&gt;</div>
+                            <div class="code-line child-line child-2">&lt;div class="tab-content"&gt;</div>
+                            <ng-container ng-repeat="tabItem in tabItems track by $index">
+                                <ng-container ng-if="$index == 0">
+                                    <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane active" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
+                                </ng-container>
+                                <ng-container ng-if="$index != 0">
+                                    <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
+                                </ng-container>
+                                <div class="code-line child-line child-4">&lt;h4 class="sr-only" id="gal{{ tabsId }}content{{ $index }}"&gt;{{ tabItem.tabItemTitle }}&lt;/h4&gt;</div>
+                                <div class="code-line child-line child-4">&lt;p&gt;{{ tabItem.tabItemText }}&lt;/p&gt;</div>
+                                <!-- navegacao acessibilidade -->
+                                <div class="code-line child-line child-4" ng-if="$index == 0">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable"&gt;Ir para próxima aba.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Voltar para aba anterior.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable pull-right"&gt;Ir para próxima aba.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-4" ng-if="$index == tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Última aba. Voltar para aba anterior.&lt;/a&gt;</div>
+                                <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                            </ng-container>
+                        <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                    <div class="code-line child-line">&lt;/div&gt;</div>
+                <div class="code-line">&lt;/div&gt;</div>
+            </ng-container>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <!-- Abas horizontais -->
+            <ng-container ng-if="tabsType === '1'">
+                <div class="sr-only">Conteúdo dividido em abas</div>
+                <div class="galeria">
+                    <div class="container-galeria">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li ng-repeat="tabItem in tabItems track by $index" ng-class="{'active': $index == 0 }" aria-hidden="true">
+                                <a ng-href="#gal{{ tabsId }}{{ $index }}" data-toggle="tab">{{ tabItem.tabItemTitle }}</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div ng-repeat="tabItem in tabItems track by $index" role="tabpanel" class="tab-pane" ng-class="{'active': $index == 0 }" ng-attr-id="gal{{ tabsId }}{{ $index }}">
+                                <h4 class="sr-only" ng-attr-id="gal{{ tabsId }}content{{ $index }}">{{ tabItem.tabItemTitle }}</h4>
+                                <p>{{ tabItem.tabItemText }}</p>
+                                <!-- navegacao acessibilidade -->
+                                <a ng-if="$index == 0" ng-href="#gal{{ tabsId }}{{ $index + 1 }}" ng-attr-data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable">Ir para próxima aba.</a>
+                                <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#gal{{ tabsId }}{{ $index - 1 }}" ng-attr-data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Voltar para aba anterior.</a>
+                                <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#gal{{ tabsId }}{{ $index + 1 }}" ng-attr-data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable pull-right">Ir para próxima aba.</a>
+                                <a ng-if="$index == tabItems.length - 1" ng-href="#gal{{ tabsId }}{{ $index - 1 }}" ng-attr-data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Última aba. Voltar para aba anterior.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- Abas verticais -->
+            <ng-container ng-if="tabsType === '2'">
+                <div class="sr-only">Conteúdo dividido em abas</div>
+                <div class="galeria galeria-vertical">
+                    <div class="container-galeria">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li ng-repeat="tabItem in tabItems track by $index" ng-class="{'active': $index == 0 }" aria-hidden="true">
+                                <a ng-href="#galvert{{ $index }}" data-toggle="tab">{{ tabItem.tabItemTitle }}</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div ng-repeat="tabItem in tabItems track by $index" role="tabpanel" class="tab-pane" ng-class="{'active': $index == 0 }" ng-attr-id="galvert{{ $index }}">
+                                <h4 class="sr-only" ng-attr-id="galvertcontent{{ $index }}">{{ tabItem.tabItemTitle }}</h4>
+                                <p>{{ tabItem.tabItemText }}</p>
+                                <!-- navegacao acessibilidade -->
+                                <a ng-if="$index == 0" ng-href="#galvert{{ $index + 1 }}" ng-attr-data-tab="galvert{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable">Ir para próxima aba.</a>
+                                <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#galvert{{ $index - 1 }}" ng-attr-data-tab="galvert{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Voltar para aba anterior.</a>
+                                <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#galvert{{ $index + 1 }}" ng-attr-data-tab="galvert{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable pull-right">Ir para próxima aba.</a>
+                                <a ng-if="$index == tabItems.length - 1" ng-href="#galvert{{ $index - 1 }}" ng-attr-data-tab="galvert{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Última aba. Voltar para aba anterior.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+            <!-- Timeline -->
+            <ng-container ng-if="tabsType === '3'">
+                <div class="sr-only">Conteúdo dividido em abas</div>
+                <div class="galeria galeria-vertical galeria-timeline">
+                    <div class="container-galeria">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li aria-hidden="true"><a href="#" class="tab-back"><i class="material-icons">keyboard_arrow_up</i></a></li>
+                            <li ng-repeat="tabItem in tabItems track by $index" ng-class="{'active': $index == 0 }" aria-hidden="true">
+                                <a ng-href="#galtime{{ $index }}" data-toggle="tab">{{ tabItem.tabItemTitle }}</a>
+                            </li>
+                            <li aria-hidden="true"><a href="#" class="tab-next"><i class="material-icons">keyboard_arrow_down</i></a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div ng-repeat="tabItem in tabItems track by $index" role="tabpanel" class="tab-pane" ng-class="{'active': $index == 0 }" ng-attr-id="galtime{{ $index }}">
+                                <h4 class="sr-only" ng-attr-id="galtimecontent{{ $index }}">{{ tabItem.tabItemTitle }}</h4>
+                                <p>{{ tabItem.tabItemText }}</p>
+                                <!-- navegacao acessibilidade -->
+                                <a ng-if="$index == 0" ng-href="#galtime{{ $index + 1 }}" ng-attr-data-tab="galtime{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable">Ir para próxima aba.</a>
+                                <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#galtime{{ $index - 1 }}" ng-attr-data-tab="galtime{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Voltar para aba anterior.</a>
+                                <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#galtime{{ $index + 1 }}" ng-attr-data-tab="galtime{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable pull-right">Ir para próxima aba.</a>
+                                <a ng-if="$index == tabItems.length - 1" ng-href="#galtime{{ $index - 1 }}" ng-attr-data-tab="galtime{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Última aba. Voltar para aba anterior.</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

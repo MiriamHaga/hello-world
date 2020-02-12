@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'timeline';">
+<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'abas'">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,12 +32,12 @@
           <ul>
             <li><a ng-click="vm.itemMenuActive = 1" ng-class="{'active': vm.itemMenuActive === 1 }" href="#content1">Introdução</a></li>
             <li><p><strong>Elementos</strong></p></li>
-            <li ng-repeat="element in elements">
+            <li ng-repeat="element in elements | filter:{interactive: false}">
               <a ng-attr-href="#content{{ element.name }}" ng-click="vm.itemMenuActive = element.name" ng-class="{'active': vm.itemMenuActive === element.name }">{{ element.title }}</a>
             </li>
             <li><p><strong>Elementos interativos</strong></p></li>
-            <li ng-repeat="interactiveElement in interactiveElements">
-              <a ng-attr-href="#content{{ interactiveElement.name }}" ng-click="vm.itemMenuActive = interactiveElement.name" ng-class="{'active': vm.itemMenuActive === interactiveElement.name }">{{ interactiveElement.title }}</a>
+            <li ng-repeat="element in elements | filter:{interactive: true}">
+              <a ng-attr-href="#content{{ element.name }}" ng-click="vm.itemMenuActive = element.name" ng-class="{'active': vm.itemMenuActive === element.name }">{{ element.title }}</a>
             </li>
           </ul>
         </nav>
@@ -146,11 +146,13 @@
     <script src="scripts/construtor_scripts/mainApp.js"></script>
 
   <!-- SCRIPTS CURSO -->
-  <script src="scripts/curso_scripts/jquery1.11.3.min.js"></script>
-  <script src="scripts/curso_scripts/bootstrap.min.js"></script>
-  <script src="scripts/curso_scripts/utils.js"></script>
-  <script src="scripts/curso_scripts/utils-acessivel.js"></script>
-  <script src="scripts/curso_scripts/unslider-min.js"></script>
+  <ng-container ng-if="preview === true">
+    <script src="scripts/curso_scripts/jquery1.11.3.min.js"></script>
+    <script src="scripts/curso_scripts/bootstrap.min.js"></script>
+    <script src="scripts/curso_scripts/utils.js"></script>
+    <script src="scripts/curso_scripts/utils-acessivel.js"></script>
+    <script src="scripts/curso_scripts/unslider-min.js"></script>
+  </ng-container>
 
   </body>
 </html>

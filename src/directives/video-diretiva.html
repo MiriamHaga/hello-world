@@ -5,4 +5,89 @@
         - checkbox, é youtube ou caminho fixo
         - campo caminho ou link youtube (instrucoes)
           -->
+
+    <p>
+        <small class="text-muted">No caso de ser um vídeo interno, ajuste o seu link de acordo com o caminho no projeto.</small>
+    </p>
+
+    <div class="form-group">
+        <label for="videoType" required>Vídeo interno ou externo?</label>
+        <select id="videoType" class="form-control" ng-model="videoType">
+            <option value="1" selected>Interno</option>
+            <option value="2">Externo YouTube</option>
+            <option value="3">Externo Vimeo</option>
+        </select>
+    </div>
+    <div class="form-group" required ng-if="videoType != 1">
+        <label for="videoCode">Código do vídeo</label>
+        <input type="text" id="videoCode" class="form-control" ng-model="vm.videoCode" placeholder="Digite o código do vídeo, são os últimos caracteres do seu link após o símbolo de '=' ou '/'.">
+    </div>
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;div class="text-center"&gt;</div>
+                <ng-container ng-if="videoType === '1'">
+                    <!-- interno -->
+                    <div class="code-line child-line">&lt;video controls width="640" height="360"&gt;</div>
+                        <div class="code-line child-line child-2">&lt;source src="videos/ex_video.mp4" type="video/mp4"&gt;</div>
+                        <div class="code-line child-line child-2">Your browser does not support the video tag.</div>
+                    <div class="code-line child-line">&lt;/video&gt;</div>
+                </ng-container>
+
+                <ng-container ng-if="videoType === '2'">
+                    <!-- youtube -->
+                    <div class="code-line child-line">&lt;iframe width="640" height="360" src="{{setVideoIframe('yt',vm.videoCode) | trustAsResourceUrl }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</div>
+                </ng-container>
+
+                <ng-container ng-if="videoType === '3'">
+                    <!-- vimeo -->
+                    <div class="code-line child-line">&lt;iframe src="{{setVideoIframe('vm',vm.videoCode) | trustAsResourceUrl }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen&gt;&lt;/iframe&gt;</div>
+                </ng-container>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <div class="text-center">
+                <ng-container ng-if="videoType === '1'">
+                    <!-- interno -->
+                    <video controls width="640" height="360">
+                        <source src="videos/ex_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </ng-container>
+
+                <ng-container ng-if="videoType === '2'">
+                    <!-- youtube -->
+                    <iframe width="640" height="360" ng-src="{{setVideoIframe('yt',vm.videoCode) | trustAsResourceUrl }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </ng-container>
+
+                <ng-container ng-if="videoType === '3'">
+                    <!-- vimeo -->
+                    <iframe ng-src="{{setVideoIframe('vm',vm.videoCode) | trustAsResourceUrl }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<iframe width="640" height="360" src="https://www.youtube.com/embed/aul0SzPVsls" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://www.youtube.com/watch?reload=9&v=aul0SzPVsls
+
+<iframe src="https://player.vimeo.com/video/110845548" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+https://vimeo.com/110845548-->

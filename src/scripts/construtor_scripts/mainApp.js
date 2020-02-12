@@ -3,57 +3,70 @@ var mainApp = angular.module("mainApp", []);
 mainApp.controller('mainController', function($scope) {
     $scope.elements = [{
         name: "bloco",
-        title: "Bloco destacado"
+        title: "Bloco destacado",
+        interactive: false
     }, {
         name: "citacao",
-        title: "Citação"
+        title: "Citação",
+        interactive: false
     }, {
         name: "figura",
-        title: "Figura"
+        title: "Figura",
+        interactive: false
     }, {
         name: "lista",
-        title: "Lista"
+        title: "Lista",
+        interactive: false
     }, {
         name: "listanumerada",
-        title: "Lista numerada"
+        title: "Lista numerada",
+        interactive: false
     }, {
         name: "tabela",
-        title: "Tabela"
+        title: "Tabela",
+        interactive: false
     }, {
         name: "timeline",
-        title: "Timeline"
+        title: "Timeline",
+        interactive: false
     }, {
         name: "videodiretiva",
-        title: "Vídeo"
-    }];
-    $scope.element = "";
-
-    $scope.interactiveElements = [{
+        title: "Vídeo",
+        interactive: false
+    }, {
         name: "abas",
-        title: "Abas (tabs)"
+        title: "Abas (tabs)",
+        interactive: true
     }, {
         name: "botao",
-        title: "Botão (link)"
+        title: "Botão (link)",
+        interactive: true
     }, {
         name: "card",
-        title: "Card"
+        title: "Card",
+        interactive: true
     }, {
         name: "carrossel",
-        title: "Carrossel"
+        title: "Carrossel",
+        interactive: true
     }, {
         name: "imageminterativa",
-        title: "Imagem interativa"
+        title: "Imagem interativa",
+        interactive: true
     }, {
         name: "modal",
-        title: "Janela pop-up (modal)"
+        title: "Janela pop-up (modal)",
+        interactive: true
     }, {
         name: "sanfona",
-        title: "Sanfona (accordion)"
+        title: "Sanfona (accordion)",
+        interactive: true
     }, {
         name: "tooltip",
-        title: "Tooltip"
+        title: "Tooltip",
+        interactive: true
     }];
-    $scope.interactiveElement = "";
+    $scope.element = "";
 
     // TABLE LINES
     $scope.tableLines = [];
@@ -103,14 +116,16 @@ mainApp.controller('mainController', function($scope) {
     $scope.timelineItems = [];
 
     $scope.addTimelineItem = function(){
-        $scope.timelineItems.push({
-            timelineItemDate:$scope.timelineDate,
-            timelineItemTitle:$scope.timelineTitle,
-            timelineItemText:$scope.timelineText
-        });
-        $scope.timelineDate = '';
-        $scope.timelineTitle = '';
-        $scope.timelineText = '';
+        if ( $scope.timelineDate && $scope.timelineText) {
+            $scope.timelineItems.push({
+                timelineItemDate: $scope.timelineDate,
+                timelineItemTitle: $scope.timelineTitle,
+                timelineItemText: $scope.timelineText
+            });
+            $scope.timelineDate = '';
+            $scope.timelineTitle = '';
+            $scope.timelineText = '';
+        }
     };
 
     $scope.deleteTimelineItem = function(timelineItem){
@@ -141,7 +156,69 @@ mainApp.controller('mainController', function($scope) {
             }
         }
     };
+
+    // VIDEO DEFAULT
+    $scope.videoType = '1';
+
+    $scope.setVideoIframe = function(source,id) {
+        if ( source === 'yt'){
+            return "https://www.youtube.com/embed/" + id;
+        }
+
+        if ( source === 'vm'){
+            return "https://player.vimeo.com/video/" + id;
+        }
+    };
+
+    // TABS ITEMS
+    $scope.tabItems = [];
+
+    $scope.addTab = function(){
+        if ( $scope.tabTitle && $scope.tabText ){
+            $scope.tabItems.push({
+                tabItemTitle:$scope.tabTitle,
+                tabItemText:$scope.tabText
+            });
+            $scope.tabTitle = '';
+            $scope.tabText = '';
+        }
+    };
+
+    $scope.deleteTab = function(tabItem){
+        var index = $scope.tabItems.indexOf(tabItem);
+        $scope.tabItems.splice(index, 1);
+    };
+
+    $scope.moveTab = function(direction, item){
+        var index = $scope.tabItems.indexOf(item);
+
+        if ( direction === 'up'){
+            if (index <= 0){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.tabItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.tabItems.splice(index - 1, 0, removed[0]);
+            }
+        } else {
+            if (index >= $scope.tabItems.length){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.tabItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.tabItems.splice(index + 1, 0, removed[0]);
+            }
+        }
+    };
 });
+
+mainApp.filter('trustAsResourceUrl', ['$sce', function ($sce) {
+    return function (val) {
+        return $sce.trustAsResourceUrl(val);
+    };
+}]);
 
 // INTRODUCAO
 mainApp.directive("introducao", function($rootScope) {

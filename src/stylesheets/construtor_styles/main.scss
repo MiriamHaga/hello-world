@@ -125,9 +125,11 @@ label[required]:before{
   right: 0;
   bottom: 0;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 54px);
   background: white;
-  padding-top:80px;
+  padding-top: 30px;
+  overflow: auto;
+  margin-top: 54px;
 }
 
 .previewing{
