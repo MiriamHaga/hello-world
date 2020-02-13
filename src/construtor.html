@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'botao'">
+<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'card'">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -142,8 +142,10 @@
 
 
   <!-- SCRIPTS CONSTRUTOR -->
-  <script src="scripts/construtor_scripts/angular.min.js"></script>
+  <ng-container ng-if="preview === false">
+    <script src="scripts/construtor_scripts/angular.min.js"></script>
     <script src="scripts/construtor_scripts/mainApp.js"></script>
+  </ng-container>
 
   <!-- SCRIPTS CURSO -->
   <ng-container ng-if="preview === true">

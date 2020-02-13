@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
         <label for="figureZoom">Possui zoom?</label>
-        <select id="figureZoom" class="form-control" ng-model="figureZoom">
+        <select id="figureZoom" class="form-control" ng-model="figureZoom" ng-init="figureZoom='2'">
             <option value="1">Sim</option>
             <option value="2">Não</option>
         </select>
@@ -37,7 +37,7 @@
 
         <div class="code-container">
             <div class="code-line">&lt;figure&gt;</div>
-                <div class="code-line child-line">&lt;img src="images/img-default.jpg" class="img-responsive<ng-container ng-if="figureZoom == 1"> img-zoom</ng-container>" alt="{{figureAlt}}"&gt;</div>
+                <div class="code-line child-line">&lt;img src="images/img-default.jpg" class="img-responsive<ng-container ng-if="figureZoom == '1'"> img-zoom</ng-container>" alt="{{figureAlt}}"&gt;</div>
                 <div class="code-line child-line" ng-if="figureCaption">&lt;figcaption ng-if="figureCaption"&gt;{{figureCaption}}&lt;/figcaption&gt;</div>
             <div class="code-line">&lt;/figure&gt;</div>
         </div>
@@ -53,7 +53,7 @@
         <div class="container">
             <figure>
                 <!-- adicione a class img-zoom nas imagens para ativar a função para aumentá-las -->
-                <img src="images/img-default.jpg" class="img-responsive" ng-class="{'img-zoom': figureZoom == 1}" alt="{{figureAlt}}">
+                <img src="images/img-default.jpg" class="img-responsive" ng-class="{'img-zoom': figureZoom == '1'}" alt="{{figureAlt}}">
                 <figcaption ng-if="figureCaption">{{figureCaption}}</figcaption>
             </figure>
         </div>

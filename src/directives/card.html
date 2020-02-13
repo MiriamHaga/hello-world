@@ -2,6 +2,7 @@
 
 <form>
     <!-- Campos:
+        - checkbox só frente (não vira)?
         - frente
           - checkbox imagem ou texto
           - conforme checkbox, campo digitar link imagem ou campos de título e texto
@@ -9,5 +10,147 @@
         - trás
           - título
           - texto
+          - imagem ?
+
+       - ajustar altura caso não caiba o conteúdo se tiver flip, pois usa position absolute
           -->
+
+    <div class="form-group">
+        <input type="checkbox" id="cardFlip" ng-model="cardFlip" ng-init="cardFlip=true" name="cardFlip">
+        <label for="cardFlip">O card tem frente e verso.</label>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6" ng-hide="cardFlip == false">
+            <div class="form-group">
+                <h3>Frente</h3>
+
+                <div class="form-group">
+                    <label for="cardFrontTitle">Título</label>
+                    <input type="text" id="cardFrontTitle" class="form-control" ng-model="cardFrontTitle" />
+                </div>
+
+                <div class="form-group">
+                    <label for="cardFrontText">Texto</label>
+                    <textarea id="cardFrontText" class="form-control" ng-model="cardFrontText"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="cardFrontImg" ng-model="cardFrontImg" ng-init="cardFrontImg=false" name="cardFrontImg">
+                    <label for="cardFrontImg">Possui uma imagem representativa.</label>
+                    <p>
+                        <small class="text-muted">Ajuste o link da imagem de acordo com o caminho no projeto.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div ng-class="{'col-md-6' : cardFlip == true, 'col-md-12' : cardFlip == false }">
+            <div class="form-group">
+                <h3 ng-hide="cardFlip == false">Verso</h3>
+
+                <div class="form-group">
+                    <label for="cardBackTitle">Título</label>
+                    <input type="text" id="cardBackTitle" class="form-control" ng-model="cardBackTitle" />
+                </div>
+
+                <div class="form-group">
+                    <label for="cardBackText">Texto</label>
+                    <textarea id="cardBackText" class="form-control" ng-model="cardBackText"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="cardBackImg" ng-model="cardBackImg" ng-init="cardBackImg=false" name="cardBackImg">
+                    <label for="cardBackImg">Possui uma imagem representativa.</label>
+                    <p>
+                        <small class="text-muted">Ajuste o link da imagem de acordo com o caminho no projeto.</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr ng-hide="cardFlip == false">
+    <div class="form-group" ng-hide="cardFlip == false">
+        <label for="cardHeight">Caso o conteúdo extrapole, defina uma altura maior para o card</label>
+        <div class="d-flex">
+            <input type="number" id="cardHeight" class="form-control" ng-model="cardHeight" style="width:80px;"/><div class="m-top-5 m-left-5">px</div>
+        </div>
+    </div>
 </form>
+
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;div class="sr-only"&gt;Conteudo dentro de um card&lt;/div&gt;</div>
+            <div class="code-line" ng-if="cardFlip == true && cardHeight">&lt;div class="card card-flip" style="min-height:{{ cardHeight }}px;"&gt;</div>
+            <div class="code-line" ng-if="cardFlip == true && !cardHeight">&lt;div class="card card-flip"&gt;</div>
+            <div class="code-line" ng-if="cardFlip == false">&lt;div class="card"&gt;</div>
+                <ng-container ng-if="cardFlip == true">
+                <div class="code-line child-line">&lt;div class="card__content card__content--front"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div class="card__content--front__content"&gt;</div>
+                        <div class="code-line child-line child-3" ng-if="cardFrontImg == true">&lt;img src="images/img-default.jpg" class="img-responsive" alt=""&gt;</div>
+                        <div class="code-line child-line child-3" ng-if="cardFrontTitle">&lt;p&gt;{{cardFrontTitle}} <ng-container ng-if="cardFrontText">&lt;small&gt;{{cardFrontText}}&lt;/small&gt;</ng-container>&lt;/p&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+                </ng-container>
+                <ng-container ng-if="cardFlip == true">
+                <div class="code-line child-line">&lt;div class="card__content card__content--back"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div class="card__content--back__content"&gt;</div>
+                        <div class="code-line child-line child-3" ng-if="cardBackImg == true">&lt;img src="images/img-default.jpg" class="img-responsive" alt=""&gt;</div>
+                        <div class="code-line child-line child-3" ng-if="cardBackTitle">&lt;h4&gt;{{cardBackTitle}}&lt;/h4&gt;</div>
+                        <div class="code-line child-line child-3" ng-if="cardBackText">&lt;p&gt;{{cardBackText}}&lt;/p&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+                </ng-container>
+
+                <ng-container ng-if="cardFlip == false">
+                <div class="code-line child-line">&lt;div class="card__content"&gt;</div>
+                    <div class="code-line child-line child-2" ng-if="cardBackImg == true">&lt;img src="images/img-default.jpg" class="img-responsive" alt=""&gt;</div>
+                    <div class="code-line child-line child-2" ng-if="cardBackTitle">&lt;h4&gt;{{cardBackTitle}}&lt;/h4&gt;</div>
+                    <div class="code-line child-line child-2" ng-if="cardBackText">&lt;p&gt;{{cardBackText}}&lt;/p&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+                </ng-container>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <div class="sr-only">Conteudo dentro de um card</div>
+            <div class="card" ng-class="{'card-flip': cardFlip == true}" ng-attr-style="{{ cardHeight && cardFlip == true && 'min-height:' + cardHeight + 'px;' || undefined }}">
+                <div class="card__content card__content--front" ng-if="cardFlip == true">
+                    <div class="card__content--front__content">
+                        <img src="images/img-default.jpg" class="img-responsive" alt="" ng-if="cardFrontImg == true">
+                        <p ng-if="cardFrontTitle">{{cardFrontTitle}} <small ng-if="cardFrontText">{{cardFrontText}}</small></p>
+                    </div>
+                </div>
+                <div class="card__content card__content--back" ng-if="cardFlip == true">
+                    <div class="card__content--back__content">
+                        <img src="images/img-default.jpg" class="img-responsive" alt="" ng-if="cardBackImg == true">
+                        <h4 ng-if="cardBackTitle">{{cardBackTitle}}</h4>
+                        <p ng-if="cardBackText">{{cardBackText}}</p>
+                    </div>
+                </div>
+
+                <div class="card__content" ng-if="cardFlip == false">
+                    <img src="images/img-default.jpg" class="img-responsive" alt="" ng-if="cardBackImg == true">
+                    <h4 ng-if="cardBackTitle">{{cardBackTitle}}</h4>
+                    <p ng-if="cardBackText">{{cardBackText}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

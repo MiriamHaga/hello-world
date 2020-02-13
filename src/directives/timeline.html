@@ -48,6 +48,7 @@
             <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
         </p>
         <div class="code-container">
+            <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo de linha do tempo&lt;/div&gt;</div>
             <div class="code-line">&lt;div class="timeline timeline-vertical2"&gt;</div>
                 <div class="code-line child-line">&lt;ul class="timeline-vertical__list" role="tablist"&gt;</div>
                     <ng-container ng-repeat="timelineItem in timelineItems track by $index">
@@ -74,6 +75,7 @@
     </div>
     <div class="generated-preview" ng-if="preview">
         <div class="container">
+            <div class="sr-only">Conteúdo de linha do tempo</div>
             <div class="timeline timeline-vertical2">
                 <ul class="timeline-vertical__list" role="tablist">
                     <li ng-repeat="timelineItem in timelineItems track by $index">

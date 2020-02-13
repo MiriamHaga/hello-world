@@ -15,19 +15,25 @@
         <label for="blockText" required>Texto</label>
         <textarea id="blockText" class="form-control" ng-model="blockText"></textarea>
     </div>
-    <div class="form-group">
-        <label for="blockSelect">Elemento adicional</label>
-        <select id="blockSelect" class="form-control" ng-model="blockImage">
+    <div class="form-group" ng-show="blockStyle == false">
+        <label for="blockImage">Elemento adicional</label>
+        <select id="blockImage" class="form-control" ng-model="blockImage" ng-init="blockImage='1'">
             <option value="1">Sem elemento gráfico</option>
             <option value="2">Com imagem</option>
             <option value="3">Com ícone do material (se o curso tiver incorporado)</option>
         </select>
-        <p ng-if="blockImage == 2">
+        <p ng-if="blockImage == '2'">
             <small class="text-muted">Ajuste o link da imagem de acordo com o caminho no projeto.</small>
         </p>
-        <p ng-if="blockImage == 3">
+        <p ng-if="blockImage == '3'">
             <small class="text-muted">Ajuste o modelo de ícone de acordo com o conteúdo.</small>
         </p>
+    </div>
+
+    <div class="form-group">
+        <input type="checkbox" id="blockStyle" ng-model="blockStyle" ng-init="blockStyle=false" name="blockStyle">
+        <label for="blockStyle">Selecione essa opção caso o tema do curso tenha um segundo estilo de bloco e queria utilizá-lo. </label>
+        <p class="text-muted"><small>*Esse estilo de bloco costuma ser mais simples, sem ícone e sem imagem. Se necessário pode adicionar depois no seu conteúdo.</small></p>
     </div>
 </form>
 
@@ -41,22 +47,26 @@
 
         <div class="code-container">
             <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dentro de um bloco em destaque&lt;/div&gt;</div>
-            <div class="code-line">&lt;div class="main-box"&gt;</div>
-
-                <ng-container ng-if="blockImage == 2">
+            <div class="code-line" ng-if="blockStyle == false">&lt;div class="main-box"&gt;</div>
+            <div class="code-line" ng-if="blockStyle == true">&lt;div class="main-box main-box-2"&gt;</div>
+                <ng-container ng-if="blockImage == '2' && blockStyle == false">
                     <div class="code-line child-line">&lt;div class="main-box__icon"&gt;</div>
                         <div class="code-line child-line child-2">&lt;img src="images/img-icone.jpg" alt=""&gt;</div>
                     <div class="code-line child-line">&lt;/div&gt;</div>
                 </ng-container>
 
-                <ng-container ng-if="blockImage == 3">
+                <ng-container ng-if="blockImage == '3' && blockStyle == false">
                     <div class="code-line child-line">&lt;div class="main-box__icon"&gt;</div>
                         <div class="code-line child-line child-2">&lt;i class="material-icons" aria-hidden="true"&gt;message&lt;/i&gt;</div>
                     <div class="code-line child-line">&lt;/div&gt;</div>
                 </ng-container>
 
+                <ng-container ng-if="blockTitle && blockStyle == true">
+                    <div class="code-line child-line">&lt;h4 class="main-box__title"&gt;{{blockTitle}}&lt;/h4&gt;</div>
+                </ng-container>
+
                 <div class="code-line child-line">&lt;div class="main-box__content"&gt;</div>
-                    <div class="code-line child-line child-2" ng-if="blockTitle">&lt;h4&gt;{{blockTitle}}&lt;/h4&gt;</div>
+                    <div class="code-line child-line child-2" ng-if="blockTitle && blockStyle == false">&lt;h4&gt;{{blockTitle}}&lt;/h4&gt;</div>
                     <div class="code-line child-line child-2">&lt;p&gt;{{blockText}}&lt;/p&gt;</div>
                 <div class="code-line child-line">&lt;/div&gt;</div>
             <div class="code-line">&lt;/div&gt;</div>
@@ -72,21 +82,20 @@
     <div class="generated-preview" ng-if="preview">
         <div class="container">
             <div class="sr-only">Conteúdo dentro de um bloco em destaque</div>
-            <div class="main-box">
-                <ng-container ng-if="blockImage == 2">
-                    <div class="main-box__icon">
-                        <img src="images/img-icone.jpg" alt="">
-                    </div>
-                </ng-container>
+            <div class="main-box" ng-class="{'main-box-2': blockStyle == true}">
+                <div class="main-box__icon" ng-if="blockImage == '2' && blockStyle == false">
+                    <img src="images/img-icone.jpg" alt="">
+                </div>
 
-                <ng-container ng-if="blockImage == 3">
-                    <div class="main-box__icon">
-                        <i class="material-icons" aria-hidden="true" style="font-size:48px;">message</i>
-                    </div>
-                </ng-container>
+                <div class="main-box__icon" ng-if="blockImage == '3' && blockStyle == false">
+                    <i class="material-icons" aria-hidden="true">message</i>
+                </div>
+
+                <h4 class="main-box__title" ng-if="blockTitle && blockStyle == true">{{blockTitle}}</h4>
 
                 <div class="main-box__content">
-                    <h4 ng-if="blockTitle">{{blockTitle}}</h4>
+                    <h4 ng-if="blockTitle && blockStyle == false">{{blockTitle}}</h4>
+
                     <p>{{blockText}}</p>
                 </div>
             </div>
