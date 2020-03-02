@@ -1,8 +1,87 @@
 ﻿<h2>Carrossel</h2>
-<!-- considerar se tem mais de um elemento como este na tela, talvez um campo para id ou mais de um? quantos? -->
 <form>
     <!-- Campos:
         - quantidade ou remover/adicionar
         - para cada slide - título, texto
         -->
+
+    <div class="form-group">
+        <label for="carouselTitle">Título</label>
+        <input type="text" id="carouselTitle" class="form-control" ng-model="carouselTitle" />
+    </div>
+    <div class="form-group">
+        <label for="carouselText">Texto</label>
+        <textarea id="carouselText" class="form-control" ng-model="carouselText"></textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addCarouselItem()">Adicionar item</button>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center" ng-repeat="carouselItem in carouselItems track by $index">
+            <span class="flex-fill">{{ carouselItem.carouselItemTitle }}</span>
+            <button class="btn btn-default btn-ico" ng-click="deleteCarouselItem(carouselItem)"><i class="material-icons">delete</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveCarouselItem('up', carouselItem)"><i class="material-icons">arrow_upward</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveCarouselItem('down', carouselItem)"><i class="material-icons">arrow_downward</i></button>
+        </li>
+    </ul>
 </form>
+
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dividido por slides&lt;/div&gt;</div>
+            <div class="code-line">&lt;div class="my-slider"&gt;</div>
+                <div class="code-line child-line">&lt;div class="container-slider"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;ul role="list"&gt;</div>
+                        <ng-container ng-repeat="carouselItem in carouselItems track by $index">
+                        <div class="code-line child-line child-3">&lt;li role="listitem"&gt;</div>
+                            <div class="code-line child-line child-4">&lt;div class="my-slider__content"&gt;</div>
+                                <div class="code-line child-line child-5" ng-if="carouselItem.carouselItemTitle">&lt;h4&gt;{{ carouselItem.carouselItemTitle }}&lt;/h4&gt;</div>
+                                <div class="code-line child-line child-5" ng-if="carouselItem.carouselItemText">&lt;p&gt;{{ carouselItem.carouselItemText }}&lt;/p&gt;</div>
+                                <div class="code-line child-line child-5">&lt;!-- navegacao acessibilidade --&gt;</div>
+                                <div class="code-line child-line child-5">&lt;p tabindex="0" class="sr-only sr-only-focusable"&gt;Fim do {{ $index + 1 }}º slide&lt;/p&gt;</div>
+                            <div class="code-line child-line child-4">&lt;/div&gt;</div>
+                        <div class="code-line child-line child-3">&lt;/li&gt;</div>
+                        </ng-container>
+                    <div class="code-line child-line child-2">&lt;/ul&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <button id="btnLoadCarousel" ng-if="carouselItems.length > 0">Carregar estilo carrossel</button>
+
+            <div class="sr-only">Conteúdo dividido por slides</div>
+            <div class="my-slider">
+                <div class="container-slider">
+                    <ul role="list">
+                        <li role="listitem" ng-repeat="carouselItem in carouselItems track by $index">
+                            <div class="my-slider__content">
+                                <h4 ng-if="carouselItem.carouselItemTitle">{{ carouselItem.carouselItemTitle }}</h4>
+                                <p ng-if="carouselItem.carouselItemText">{{ carouselItem.carouselItemText }}</p>
+                                <!-- navegacao acessibilidade -->
+                                <p tabindex="0" class="sr-only sr-only-focusable">Fim do {{ $index + 1 }}º slide</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

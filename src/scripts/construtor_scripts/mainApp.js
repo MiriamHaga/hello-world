@@ -212,6 +212,49 @@ mainApp.controller('mainController', function($scope) {
             }
         }
     };
+
+    // CAROUSEL ITEMS
+    $scope.carouselItems = [];
+
+    $scope.addCarouselItem = function(){
+        if ( $scope.carouselTitle || $scope.carouselText) {
+            $scope.carouselItems.push({
+                carouselItemTitle: $scope.carouselTitle,
+                carouselItemText: $scope.carouselText
+            });
+            $scope.carouselTitle = '';
+            $scope.carouselText = '';
+        }
+    };
+
+    $scope.deleteCarouselItem = function(carouselItem){
+        var index = $scope.carouselItems.indexOf(carouselItem);
+        $scope.carouselItems.splice(index, 1);
+    };
+
+    $scope.moveCarouselItem = function(direction, item){
+        var index = $scope.carouselItems.indexOf(item);
+
+        if ( direction === 'up'){
+            if (index <= 0){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.carouselItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.carouselItems.splice(index - 1, 0, removed[0]);
+            }
+        } else {
+            if (index >= $scope.carouselItems.length){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.carouselItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.carouselItems.splice(index + 1, 0, removed[0]);
+            }
+        }
+    };
 });
 
 mainApp.filter('trustAsResourceUrl', ['$sce', function ($sce) {
