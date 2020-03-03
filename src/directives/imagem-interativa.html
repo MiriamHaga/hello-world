@@ -7,4 +7,105 @@
         - positionamento em % a partir do centro, talvez setinhas para ir para os lados incrementando o valor da porcentagem
         - título e texto do tooltip
           -->
+
+    <p>
+        <small class="text-muted">Ajuste o link da imagem de acordo com o caminho no projeto.</small>
+    </p>
+
+    <div class="form-group">
+        <label for="interactiveImgTitle">Título</label>
+        <input type="text" id="interactiveImgTitle" class="form-control" ng-model="interactiveImgTitle" />
+    </div>
+
+    <div class="form-group">
+        <label for="interactiveImgText">Texto</label>
+        <textarea id="interactiveImgText" class="form-control" ng-model="interactiveImgText"></textarea>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addInteractiveImgItem()">Adicionar item</button>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center" ng-repeat="interactiveImgItem in interactiveImgItems track by $index">
+            <span class="flex-fill"><strong>{{ $index+1 }} - </strong> {{ interactiveImgItem.interactiveImgItemTitle }}</span>
+            <button class="btn btn-default btn-ico" ng-click="deleteInteractiveImgItem(interactiveImgItem)"><i class="material-icons">delete</i></button>
+            <!--<button class="btn btn-primary btn-ico" ng-click="moveCarouselItem('up', carouselItem)"><i class="material-icons">arrow_upward</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveCarouselItem('down', carouselItem)"><i class="material-icons">arrow_downward</i></button>-->
+        </li>
+    </ul>
+
+    <div class="form-group">
+        <input class="custom-input-file" id="interactiveImgSrc" type="file" ng-file-select="onFileSelect($files)" ng-model="interactiveImgSrc">
+        <label for="interactiveImgSrc">Carregar imagem para posicionar itens</label>
+    </div>
+
+    <div class="text-center" ng-if="interactiveImgSrc">
+        <div class="interactive-image-model">
+            <img ng-src="{{interactiveImgSrc}}" />
+
+            <ng-container ng-repeat="interactiveImgItem in interactiveImgItems track by $index">
+                <div class="interactive-image__btn" data-btn="{{$index+1}}" ng-attr-style='margin-top:{{ interactiveImgItem.interactiveImgItemVertPosition }}%; margin-left:{{ interactiveImgItem.interactiveImgItemHorPosition }}%;'>
+                    <button class="btn btn-move move-top" ng-click="moveInteractiveImgBtn('top',interactiveImgItem)"><i class="material-icons" aria-hidden="true">keyboard_arrow_up</i></button>
+                    <button class="btn btn-move move-bottom" ng-click="moveInteractiveImgBtn('bottom',interactiveImgItem)"><i class="material-icons" aria-hidden="true">keyboard_arrow_down</i></button>
+                    <button class="btn btn-move move-left" ng-click="moveInteractiveImgBtn('left',interactiveImgItem)"><i class="material-icons" aria-hidden="true">keyboard_arrow_left</i></button>
+                    <button class="btn btn-move move-right" ng-click="moveInteractiveImgBtn('right',interactiveImgItem)"><i class="material-icons" aria-hidden="true">keyboard_arrow_right</i></button>
+                </div>
+            </ng-container>
+        </div>
+    </div>
 </form>
+
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+        <p>
+            <small class="text-muted"><strong>IMPORTANTE:</strong> O upload da imagem tem a função de visualização para posicionamento dos itens. No projeto o caminho da imagem (src) deve ser ajustado.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;div class="text-center"&gt;</div>
+                <div class="code-line child-line">&lt;div class="sr-only"&gt;Imagem com botões de interação&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;div class="interactive-image"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;img src="../../images/img-default.jpg" alt=""/&gt;</div>
+
+                    <ng-container ng-repeat="interactiveImgItem in interactiveImgItems track by $index">
+                        <div class="code-line child-line child-2">&lt;button class="interactive-image__btn" aria-hidden="true" style='margin-top:{{ interactiveImgItem.interactiveImgItemVertPosition }}%; margin-left:{{ interactiveImgItem.interactiveImgItemHorPosition }}%;' data-container="body" data-toggle="popover" data-placement="auto" data-title="{{ interactiveImgItem.interactiveImgItemTitle }}" data-content="{{ interactiveImgItem.interactiveImgItemText }}" data-template="&lt;div class='popover' role='tooltip'&gt;&lt;div class='arrow'&gt;&lt;/div&gt;&lt;h3 class='popover-title'&gt;&lt;/h3&gt;&lt;div class='popover-content'&gt;&lt;/div&gt;&lt;div class='popover-buttons'&gt;&lt;button class='popover-back'&gt;&lt;i class='material-icons' aria-hidden='true'&gt;keyboard_arrow_left&lt;/i&gt;&lt;/button&gt;&lt;button class='popover-next'&gt;&lt;i class='material-icons' aria-hidden='true'&gt;keyboard_arrow_right&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;"&gt;</div>
+                            <div class="code-line child-line child-3">&lt;i class="material-icons" aria-hidden="true"&gt;add&lt;/i&gt;&lt;span class="sr-only"&gt;Área clicável da imagem.&lt;/span&gt;</div>
+                        <div class="code-line child-line child-2">&lt;/button&gt;</div>
+                    </ng-container>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <button id="btnLoadInteractiveImg" ng-if="interactiveImgSrc">Carregar textos da imagem interativa</button>
+
+            <div class="text-center">
+                <div class="sr-only">Imagem com botões de interação</div>
+                <div class="interactive-image">
+                    <img ng-src="{{interactiveImgSrc}}" alt=""/>
+
+                    <ng-container ng-repeat="interactiveImgItem in interactiveImgItems track by $index">
+                        <button class="interactive-image__btn" aria-hidden="true" ng-attr-style='margin-top:{{ interactiveImgItem.interactiveImgItemVertPosition }}%; margin-left:{{ interactiveImgItem.interactiveImgItemHorPosition }}%;' data-container="body" data-toggle="popover" data-placement="auto" data-title="{{ interactiveImgItem.interactiveImgItemTitle }}" data-content="{{ interactiveImgItem.interactiveImgItemText }}" data-template="<div class='popover' role='tooltip'><div class='arrow'></div><h3 class='popover-title'></h3><div class='popover-content'></div><div class='popover-buttons'><button class='popover-back'><i class='material-icons' aria-hidden='true'>keyboard_arrow_left</i></button><button class='popover-next'><i class='material-icons' aria-hidden='true'>keyboard_arrow_right</i></button></div></div>">
+                            <i class="material-icons" aria-hidden="true">add</i><span class="sr-only">Área clicável da imagem.</span>
+                        </button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,6 @@
 var mainApp = angular.module("mainApp", []);
 
-mainApp.controller('mainController', function($scope) {
+mainApp.controller('mainController', function($scope, $interval) {
     $scope.elements = [{
         name: "bloco",
         title: "Bloco destacado",
@@ -255,6 +255,46 @@ mainApp.controller('mainController', function($scope) {
             }
         }
     };
+
+    // INTERACTIVE IMG ITEMS
+    $scope.interactiveImgItems = [];
+
+    $scope.addInteractiveImgItem = function(){
+        if ( $scope.interactiveImgTitle || $scope.interactiveImgText) {
+            $scope.interactiveImgItems.push({
+                interactiveImgItemTitle: $scope.interactiveImgTitle,
+                interactiveImgItemText: $scope.interactiveImgText,
+                interactiveImgItemVertPosition: 0,
+                interactiveImgItemHorPosition: 0
+            });
+            $scope.interactiveImgTitle = '';
+            $scope.interactiveImgText = '';
+        }
+    };
+
+    $scope.moveInteractiveImgBtn = function(position, interactiveImgItem){
+        var index = $scope.interactiveImgItems.indexOf(interactiveImgItem);
+
+        if ( position == 'top'){
+            $scope.interactiveImgItems[index].interactiveImgItemVertPosition=$scope.interactiveImgItems[index].interactiveImgItemVertPosition-1;
+        } else if ( position == 'bottom'){
+            $scope.interactiveImgItems[index].interactiveImgItemVertPosition=$scope.interactiveImgItems[index].interactiveImgItemVertPosition+1;
+        } else if ( position == 'left'){
+            $scope.interactiveImgItems[index].interactiveImgItemHorPosition=$scope.interactiveImgItems[index].interactiveImgItemHorPosition-1;
+        } else if ( position == 'right'){
+            $scope.interactiveImgItems[index].interactiveImgItemHorPosition=$scope.interactiveImgItems[index].interactiveImgItemHorPosition+1;
+        }
+    };
+
+    $scope.deleteInteractiveImgItem = function(interactiveImgItem){
+        var index = $scope.interactiveImgItems.indexOf(interactiveImgItem);
+        $scope.interactiveImgItems.splice(index, 1);
+    };
+
+    $scope.interactiveImgSrc = "";
+    $scope.$on("fileProgress", function(e, progress) {
+        $scope.progress = progress.loaded / progress.total;
+    });
 });
 
 mainApp.filter('trustAsResourceUrl', ['$sce', function ($sce) {
@@ -414,4 +454,78 @@ mainApp.directive("tooltip", function($rootScope) {
         templateUrl: "directives/tooltip.html",
         scope: false
     }
+});
+
+
+
+// -- UPLOAD DE IMAGENS --
+mainApp.directive("ngFileSelect", function(fileReader, $timeout) {
+    return {
+        scope: {
+            ngModel: '='
+        },
+        link: function($scope, el) {
+            function getFile(file) {
+                fileReader.readAsDataUrl(file, $scope)
+                    .then(function(result) {
+                        $timeout(function() {
+                            $scope.ngModel = result;
+                        });
+                    });
+            }
+
+            el.bind("change", function(e) {
+                var file = (e.srcElement || e.target).files[0];
+                getFile(file);
+            });
+        }
+    };
+});
+
+mainApp.factory("fileReader", function($q, $log) {
+    var onLoad = function(reader, deferred, scope) {
+        return function() {
+            scope.$apply(function() {
+                deferred.resolve(reader.result);
+            });
+        };
+    };
+
+    var onError = function(reader, deferred, scope) {
+        return function() {
+            scope.$apply(function() {
+                deferred.reject(reader.result);
+            });
+        };
+    };
+
+    var onProgress = function(reader, scope) {
+        return function(event) {
+            scope.$broadcast("fileProgress", {
+                total: event.total,
+                loaded: event.loaded
+            });
+        };
+    };
+
+    var getReader = function(deferred, scope) {
+        var reader = new FileReader();
+        reader.onload = onLoad(reader, deferred, scope);
+        reader.onerror = onError(reader, deferred, scope);
+        reader.onprogress = onProgress(reader, scope);
+        return reader;
+    };
+
+    var readAsDataURL = function(file, scope) {
+        var deferred = $q.defer();
+
+        var reader = getReader(deferred, scope);
+        reader.readAsDataURL(file);
+
+        return deferred.promise;
+    };
+
+    return {
+        readAsDataUrl: readAsDataURL
+    };
 });

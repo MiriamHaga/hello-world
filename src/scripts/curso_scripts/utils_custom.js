@@ -1,10 +1,10 @@
 $('.carousel').carousel({
   pause: true,
   interval: false
-})
+});
 
 $('[data-toggle="popover"]').popover({
-  trigger: 'focus',
+  trigger: 'click',
   container: 'body',
   html: true
 });
@@ -34,6 +34,30 @@ jQuery(document).ready(function($) {
     });
     $(this).hide();
   });
+
+  $(document).on("click", "#btnLoadInteractiveImg", function() {
+    // SCRIPT NOVO (modelo exemplo no Socarrao) para funcionar no IOS
+    $('.interactive-image__btn[data-toggle="popover"]').popover({
+      trigger: 'click',
+      container: 'body',
+      html: true
+    }).on('shown.bs.popover', function () {
+      $('.interactive-image__btn[data-toggle="popover"]').removeClass('active');
+      $(this).addClass('active');
+
+      $('.popover').find('button.popover-next').unbind("click").click(function (e) {
+        $('[data-toggle="popover"].active').click();
+        $('[data-toggle="popover"].active').next('span').next('span').next('button').next('[data-toggle="popover"]').click();
+      });
+
+      $('.popover').find('button.popover-back').unbind("click").click(function (e) {
+        $('[data-toggle="popover"].active').click();
+        $('[data-toggle="popover"].active').prev('button').prev('span').prev('span').prev('[data-toggle="popover"]').click();
+      });
+    });
+
+  });
+
 
   // zoom img
   /*$('.img-zoom').each(function(){
