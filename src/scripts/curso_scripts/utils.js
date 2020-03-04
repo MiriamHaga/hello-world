@@ -1,7 +1,7 @@
 $('.carousel').carousel({
   pause: true,
   interval: false
-})
+});
 
 $('[data-toggle="popover"]').popover({
   trigger: 'click',
@@ -53,7 +53,7 @@ jQuery(document).ready(function($) {
   });
 
   // zoom img
-  /*$('.img-zoom').each(function(){
+  $('.img-zoom').each(function(){
     $(this).click(function(){
       $('.img-zoomin-area').remove();
 
@@ -64,28 +64,6 @@ jQuery(document).ready(function($) {
       $(this).clone().appendTo('.img-zoomin-area');
 
       $('.img-zoomin-area').click(function(){
-       $(this).addClass('img-zoomout');
-
-       setTimeout(function(){
-       $('.img-zoomin-area').remove();
-       $('body').css('overflow', 'initial');
-       $('.img-zoom').removeClass('img-zoomin');
-       }, 200);
-
-       });
-    });
-  });*/
-  $(document).on("click", ".img-zoom", function() {
-    $(this).click(function(){
-      $('.img-zoomin-area').remove();
-
-      $('body').append("<div class='img-zoomin-area'></div>");
-      $('body').css('overflow', 'hidden');
-      $(this).addClass('img-zoomin');
-
-      $(this).clone().appendTo('.img-zoomin-area');
-
-      $(document).on("click", ".img-zoomin-area", function() {
         $(this).addClass('img-zoomout');
 
         setTimeout(function(){
@@ -93,6 +71,7 @@ jQuery(document).ready(function($) {
           $('body').css('overflow', 'initial');
           $('.img-zoom').removeClass('img-zoomin');
         }, 200);
+
       });
     });
   });
@@ -111,21 +90,13 @@ jQuery(document).ready(function($) {
     $(this).before('<button class="sr-only popover-sr-button">' + popovertext + '</button>');
     $(this).after('<span tabindex="0" class="sr-only popover-sr-desc" style="display: none; position: static;">Detalhes do trecho: ' + popovertitle + ' ' + popoverdesc + '</span><span tabindex="0" class="sr-only popover-sr-end-button" style="display: none; position:relative;">Fim dos detalhes do trecho</span>');
 
-    /*$('.popover-sr-button').click(function(){
+    $('.popover-sr-button').click(function(){
+      //$(this).next('button').focus();
       $(this).next('button').next('.popover-sr-desc').next('.popover-sr-end-button').show();
       $(this).next('button').next('.popover-sr-desc').show().focus();
     });
 
     $('.popover-sr-end-button').focus(function(){
-      $(this).prev('.popover-sr-desc').hide();
-      $(this).blur();
-    });*/
-    $(document).on("click", ".popover-sr-button", function() {
-      $(this).next('button').next('.popover-sr-desc').next('.popover-sr-end-button').show();
-      $(this).next('button').next('.popover-sr-desc').show().focus();
-    });
-
-    $(document).on("focus", ".popover-sr-end-button", function() {
       $(this).prev('.popover-sr-desc').hide();
       $(this).blur();
     });
@@ -134,7 +105,7 @@ jQuery(document).ready(function($) {
 
   // Ajustes acessibilidade abas/tabs
   var targettab;
-  /*$('.nav-tabs-next').click(function(){
+  $('.nav-tabs-next').click(function(){
     $(this).parent('.tab-pane').removeClass('active').removeClass('in');
     $(this).parent('.tab-pane').next().addClass('active in');
 
@@ -154,32 +125,11 @@ jQuery(document).ready(function($) {
     $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().addClass('active');
     $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().siblings().find('*[data-toggle="tab"]').attr('aria-expanded', false );
     $('.nav-tabs > li > a[href="#'+targettab+'"]').attr('aria-expanded', true);
-  });*/
-  $(document).on("click", ".nav-tabs-next", function() {
-    $(this).parent('.tab-pane').removeClass('active').removeClass('in');
-    $(this).parent('.tab-pane').next().addClass('active in');
-
-    targettab = $(this).attr('data-tab');
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().siblings().removeClass('active');
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().addClass('active');
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().siblings().find('*[data-toggle="tab"]').attr('aria-expanded', false );
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').attr('aria-expanded', true);
-  });
-
-  $(document).on("click", ".nav-tabs-back", function() {
-    $(this).parent('.tab-pane').removeClass('active').removeClass('in');
-    $(this).parent('.tab-pane').prev().addClass('active in');
-
-    targettab = $(this).attr('data-tab');
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().siblings().removeClass('active');
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().addClass('active');
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').parent().siblings().find('*[data-toggle="tab"]').attr('aria-expanded', false );
-    $('.nav-tabs > li > a[href="#'+targettab+'"]').attr('aria-expanded', true);
   });
 
   // Navegacao abas como timeline
   var targetnexttab;
-  /*$('.galeria-timeline .tab-next').click(function(e){
+  $('.galeria-timeline .tab-next').click(function(e){
     e.preventDefault();
 
     if( !$(this).parent('li').prev('li').hasClass('active') ){
@@ -203,31 +153,6 @@ jQuery(document).ready(function($) {
     }else {
       $(this).attr('disabled');
     }
-  });*/
-  $(document).on("click", ".galeria-timeline .tab-next", function(e) {
-    e.preventDefault();
-
-    if( !$(this).parent('li').prev('li').hasClass('active') ){
-      $(this).parents('.nav-tabs').find('.active').removeClass('active').next('li').addClass('active');
-      targetnexttab = $(this).parents('.nav-tabs').find('.active').children('a').attr('href');
-      $(this).parents('.container-galeria').find('.tab-pane').removeClass('active').removeClass('in');
-      $(targetnexttab).addClass('active in');
-    } else {
-      $(this).attr('disabled');
-    }
-  });
-
-  $(document).on("click", ".galeria-timeline .tab-back", function(e) {
-    e.preventDefault();
-
-    if( !$(this).parent('li').next('li').hasClass('active') ){
-      $(this).parents('.nav-tabs').find('.active').removeClass('active').prev('li').addClass('active');
-      targetnexttab = $(this).parents('.nav-tabs').find('.active').children('a').attr('href');
-      $(this).parents('.container-galeria').find('.tab-pane').removeClass('active').removeClass('in');
-      $(targetnexttab).addClass('active in');
-    }else {
-      $(this).attr('disabled');
-    }
   });
 
   // Ajuste acessibilidade slider
@@ -241,10 +166,7 @@ jQuery(document).ready(function($) {
 
 
   // flip cards
-  /*$('.card-flip').click(function(){
-    $(this).toggleClass('is-flipped');
-  });*/
-  $(document).on("click", ".card-flip", function() {
+  $('.card-flip').click(function(){
     $(this).toggleClass('is-flipped');
   });
 });

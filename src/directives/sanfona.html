@@ -10,4 +10,98 @@
           ** manter tudo fechado por padrão
           - pensar: troca ordem
     -->
+
+    <div class="form-group">
+        <label for="accordionId" required>Id do elemento</label>
+        <input type="number" id="accordionId" class="form-control" ng-model="accordionId" ng-init="accordionId=1" value="1"/>
+        <p class="text-muted">
+            <small>Caso tenha mais de um elemento como este na mesma tela é necessário definir um novo id.</small>
+        </p>
+    </div>
+
+    <div class="form-group">
+        <label for="accordionTitle" required>Título do item</label>
+        <input type="text" id="accordionTitle" class="form-control" ng-model="accordionTitle" />
+    </div>
+    <div class="form-group">
+        <label for="accordionText" required>Conteúdo do item</label>
+        <textarea id="accordionText" class="form-control" ng-model="accordionTexts" ng-list="&#10;" ng-trim="false"></textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addAccordion()">Adicionar item</button>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item d-flex align-items-center" ng-repeat="accordionItem in accordionItems track by $index">
+            <span class="flex-fill">{{ accordionItem.accordionItemTitle }}</span>
+            <button class="btn btn-default btn-ico" ng-click="deleteAccordion(accordionItem)"><i class="material-icons">delete</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveAccordion('up', accordionItem)"><i class="material-icons">arrow_upward</i></button>
+            <button class="btn btn-primary btn-ico" ng-click="moveAccordion('down', accordionItem)"><i class="material-icons">arrow_downward</i></button>
+        </li>
+    </ul>
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <!--<div class="code-line">&lt;figure&gt;</div>
+            <div class="code-line child-line">&lt;img src="images/img-default.jpg" class="img-responsive<ng-container ng-if="figureZoom == '1'"> img-zoom</ng-container>" alt="{{figureAlt}}"&gt;</div>
+            <div class="code-line child-line" ng-if="figureCaption">&lt;figcaption ng-if="figureCaption"&gt;{{figureCaption}}&lt;/figcaption&gt;</div>
+            <div class="code-line">&lt;/figure&gt;</div>-->
+
+            <div class="code-line">&lt;div class="sr-only"&gt;Conteúdo dividido em sanfonas&lt;/div&gt;</div>
+            <div class="code-line">&lt;div class="panel-group" id="accordion{{accordionId}}" role="tablist" aria-multiselectable="true"&gt;</div>
+                <ng-container  ng-repeat="accordionItem in accordionItems track by $index">
+                <div class="code-line child-line">&lt;div class="panel panel-default"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div class="panel-heading" role="tab" id="heading{{accordionId}}{{$index}}"&gt;</div>
+                        <div class="code-line child-line child-3">&lt;h4 class="panel-title"&gt;</div>
+                            <div class="code-line child-line child-4">&lt;a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion{{accordionId}}" href="#collapse{{accordionId}}{{$index}}" aria-expanded="false" aria-controls="collapse{{accordionId}}{{$index}}"&gt;</div>
+                                <div class="code-line child-line child-5">{{ accordionItem.accordionItemTitle }}</div>
+                            <div class="code-line child-line child-4">&lt;/a&gt;</div>
+                        <div class="code-line child-line child-3">&lt;/h4&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div id="collapse{{accordionId}}{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{accordionId}}{{$index}}"&gt;</div>
+                        <div class="code-line child-line child-3">&lt;div class="panel-body"&gt;</div>
+                            <div class="code-line child-line child-4" ng-repeat="accordionItemText in accordionItem.accordionItemTexts track by $index">&lt;p&gt;{{ accordionItemText }}&lt;/p&gt;</div>
+                         <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+                </ng-container>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <div class="sr-only">Conteúdo dividido em sanfonas</div>
+            <div class="panel-group" id="accordion{{accordionId}}" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default" ng-repeat="accordionItem in accordionItems track by $index">
+                    <div class="panel-heading" role="tab" id="heading{{accordionId}}{{$index}}">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion{{accordionId}}" href="#collapse{{accordionId}}{{$index}}" aria-expanded="false" aria-controls="collapse{{accordionId}}{{$index}}">
+                                {{ accordionItem.accordionItemTitle }}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse{{accordionId}}{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{accordionId}}{{$index}}">
+                        <div class="panel-body">
+                            <p ng-repeat="accordionItemText in accordionItem.accordionItemTexts track by $index">{{ accordionItemText }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -295,6 +295,49 @@ mainApp.controller('mainController', function($scope) {
     $scope.$on("fileProgress", function(e, progress) {
         $scope.progress = progress.loaded / progress.total;
     });
+
+    // ACCORDION ITEMS
+    $scope.accordionItems = [];
+
+    $scope.addAccordion = function(){
+        if ( $scope.accordionTitle && $scope.accordionTexts ){
+            $scope.accordionItems.push({
+                accordionItemTitle:$scope.accordionTitle,
+                accordionItemTexts:$scope.accordionTexts
+            });
+            $scope.accordionTitle = '';
+            $scope.accordionTexts = [];
+        }
+    };
+
+    $scope.deleteAccordion = function(accordionItem){
+        var index = $scope.accordionItems.indexOf(accordionItem);
+        $scope.accordionItems.splice(index, 1);
+    };
+
+    $scope.moveAccordion = function(direction, item){
+        var index = $scope.accordionItems.indexOf(item);
+
+        if ( direction === 'up'){
+            if (index <= 0){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.accordionItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.accordionItems.splice(index - 1, 0, removed[0]);
+            }
+        } else {
+            if (index >= $scope.accordionItems.length){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.accordionItems.splice(index, 1);
+                // Re-add removed value to the previous index
+                $scope.accordionItems.splice(index + 1, 0, removed[0]);
+            }
+        }
+    };
 });
 
 mainApp.filter('trustAsResourceUrl', ['$sce', function ($sce) {
