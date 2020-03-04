@@ -75,6 +75,14 @@ jQuery(document).ready(function($) {
 
   });
 
+  $(document).on("click", "#btnLoadPopover", function() {
+    $('[data-toggle="popover"]').popover({
+      trigger: 'focus',
+      container: 'body',
+      html: true
+    });
+  });
+
 
   // zoom img
   /*$('.img-zoom').each(function(){

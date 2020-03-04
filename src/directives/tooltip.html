@@ -6,4 +6,54 @@
         - título tooltip
         - texto tooltip
           -->
+
+    <div class="form-group">
+        <label for="tooltipLink" required>Texto do link que abrirá o tooltip</label>
+        <input type="text" id="tooltipLink" class="form-control" ng-model="tooltipLink" />
+    </div>
+    <div class="form-group">
+        <label for="tooltipTitle">Título do tooltip</label>
+        <input type="text" id="tooltipTitle" class="form-control" ng-model="tooltipTitle" />
+    </div>
+    <div class="form-group">
+        <label for="tooltipText" required>Conteúdo do tooltip</label>
+        <textarea id="tooltipText" class="form-control" ng-model="tooltipText"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="tooltipPosition" required>Posição do tooltip</label>
+        <select name="tooltipPosition" id="tooltipPosition" class="form-control" ng-init="tooltipPosition='top'" ng-model="tooltipPosition">
+            <option value="top">acima</option>
+            <option value="bottom">abaixo</option>
+            <option value="left">esquerda</option>
+            <option value="right">direita</option>
+        </select>
+    </div>
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;button data-toggle="popover" data-placement="{{tooltipPosition}}" data-title="{{tooltipTitle}}" data-content="{{tooltipText}}"&gt;{{tooltipLink}}&lt;/button&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <button class="btn btn-primary" id="btnLoadPopover">Carregar conteúdo do popover</button>
+            <br><br><br>
+            <button data-toggle="popover" data-placement="{{tooltipPosition}}" data-title="{{tooltipTitle}}" data-content="{{tooltipText}}">{{tooltipLink}}</button>
+        </div>
+    </div>
+</div>
