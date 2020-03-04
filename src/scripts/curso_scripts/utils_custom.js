@@ -56,6 +56,23 @@ jQuery(document).ready(function($) {
       });
     });
 
+    // ajuste fechar popover quando modal ou imagem zoom aberta
+    $(document).on('focus', ':not([data-toggle="popover"])', function(){
+      $('.popover').popover('hide');
+    });
+
+    $('[data-toggle="popover"]').on('focusout', function(){
+      $('.popover').popover('hide');
+    });
+
+    $(document).on('focus', ':not(.popover)', function(){
+      $('.popover').popover('hide');
+    });
+
+    $('body').on('hidden.bs.popover', function (e) {
+      $(e.target).data("bs.popover").inState = { click: false, hover: false, focus: false }
+    });
+
   });
 
 

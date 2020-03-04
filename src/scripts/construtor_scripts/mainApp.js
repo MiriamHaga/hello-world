@@ -1,6 +1,6 @@
 var mainApp = angular.module("mainApp", []);
 
-mainApp.controller('mainController', function($scope, $interval) {
+mainApp.controller('mainController', function($scope) {
     $scope.elements = [{
         name: "bloco",
         title: "Bloco destacado",

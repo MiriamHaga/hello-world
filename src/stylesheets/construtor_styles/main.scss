@@ -373,6 +373,10 @@ input[type="file"].custom-input-file{
     color:$brand-primary;
     text-shadow: 0 1px 2px rgba(0,0,0,.6);
 
+    &:hover{
+      z-index: 1;
+    }
+
     &:after{
       content: attr(data-btn);
       background: $brand-primary;

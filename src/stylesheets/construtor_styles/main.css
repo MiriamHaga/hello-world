@@ -5171,6 +5171,8 @@ input[type="file"].custom-input-file {
     border: 2px solid #f5643a;
     color: #f5643a;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); }
+    .interactive-image-model .interactive-image__btn:hover {
+      z-index: 1; }
     .interactive-image-model .interactive-image__btn:after {
       content: attr(data-btn);
       background: #f5643a;
