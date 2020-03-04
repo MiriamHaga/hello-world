@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         <label for="carouselText">Texto</label>
-        <textarea id="carouselText" class="form-control" ng-model="carouselText"></textarea>
+        <textarea id="carouselText" class="form-control" ng-model="carouselTexts" ng-list="&#10;" ng-trim="false"></textarea>
     </div>
     <div class="form-group">
         <button class="btn btn-primary btn-block" ng-click="addCarouselItem()">Adicionar item</button>
@@ -45,7 +45,7 @@
                         <div class="code-line child-line child-3">&lt;li role="listitem"&gt;</div>
                             <div class="code-line child-line child-4">&lt;div class="my-slider__content"&gt;</div>
                                 <div class="code-line child-line child-5" ng-if="carouselItem.carouselItemTitle">&lt;h4&gt;{{ carouselItem.carouselItemTitle }}&lt;/h4&gt;</div>
-                                <div class="code-line child-line child-5" ng-if="carouselItem.carouselItemText">&lt;p&gt;{{ carouselItem.carouselItemText }}&lt;/p&gt;</div>
+                                <div class="code-line child-line child-5" ng-if="carouselItem.carouselItemTexts" ng-repeat="carouselItemText in carouselItem.carouselItemTexts track by $index">&lt;p&gt;{{ carouselItemText }}&lt;/p&gt;</div>
                                 <div class="code-line child-line child-5">&lt;!-- navegacao acessibilidade --&gt;</div>
                                 <div class="code-line child-line child-5">&lt;p tabindex="0" class="sr-only sr-only-focusable"&gt;Fim do {{ $index + 1 }}º slide&lt;/p&gt;</div>
                             <div class="code-line child-line child-4">&lt;/div&gt;</div>
@@ -74,7 +74,7 @@
                         <li role="listitem" ng-repeat="carouselItem in carouselItems track by $index">
                             <div class="my-slider__content">
                                 <h4 ng-if="carouselItem.carouselItemTitle">{{ carouselItem.carouselItemTitle }}</h4>
-                                <p ng-if="carouselItem.carouselItemText">{{ carouselItem.carouselItemText }}</p>
+                                <p ng-if="carouselItem.carouselItemTexts" ng-repeat="carouselItemText in carouselItem.carouselItemTexts track by $index">{{ carouselItemText }}</p>
                                 <!-- navegacao acessibilidade -->
                                 <p tabindex="0" class="sr-only sr-only-focusable">Fim do {{ $index + 1 }}º slide</p>
                             </div>

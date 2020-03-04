@@ -116,15 +116,15 @@ mainApp.controller('mainController', function($scope) {
     $scope.timelineItems = [];
 
     $scope.addTimelineItem = function(){
-        if ( $scope.timelineDate && $scope.timelineText) {
+        if ( $scope.timelineDate && $scope.timelineTexts) {
             $scope.timelineItems.push({
                 timelineItemDate: $scope.timelineDate,
                 timelineItemTitle: $scope.timelineTitle,
-                timelineItemText: $scope.timelineText
+                timelineItemTexts: $scope.timelineTexts
             });
             $scope.timelineDate = '';
             $scope.timelineTitle = '';
-            $scope.timelineText = '';
+            $scope.timelineTexts = [];
         }
     };
 
@@ -174,13 +174,13 @@ mainApp.controller('mainController', function($scope) {
     $scope.tabItems = [];
 
     $scope.addTab = function(){
-        if ( $scope.tabTitle && $scope.tabText ){
+        if ( $scope.tabTitle && $scope.tabTexts ){
             $scope.tabItems.push({
                 tabItemTitle:$scope.tabTitle,
-                tabItemText:$scope.tabText
+                tabItemTexts:$scope.tabTexts
             });
             $scope.tabTitle = '';
-            $scope.tabText = '';
+            $scope.tabTexts = [];
         }
     };
 
@@ -217,13 +217,13 @@ mainApp.controller('mainController', function($scope) {
     $scope.carouselItems = [];
 
     $scope.addCarouselItem = function(){
-        if ( $scope.carouselTitle || $scope.carouselText) {
+        if ( $scope.carouselTitle || $scope.carouselTexts) {
             $scope.carouselItems.push({
                 carouselItemTitle: $scope.carouselTitle,
-                carouselItemText: $scope.carouselText
+                carouselItemTexts: $scope.carouselTexts
             });
             $scope.carouselTitle = '';
-            $scope.carouselText = '';
+            $scope.carouselTexts = [];
         }
     };
 

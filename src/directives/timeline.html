@@ -23,7 +23,7 @@
     </div>
     <div class="form-group">
         <label for="timelineText" required>Texto</label>
-        <textarea id="timelineText" class="form-control" ng-model="timelineText"></textarea>
+        <textarea id="timelineText" class="form-control" ng-model="timelineTexts" ng-list="&#10;" ng-trim="false"></textarea>
     </div>
     <div class="form-group">
         <button class="btn btn-primary btn-block" ng-click="addTimelineItem()">Adicionar item</button>
@@ -38,7 +38,6 @@
         </li>
     </ul>
 </form>
-
 
 <!-- GENERATED -->
 <div class="generated" ng-class="{'previewing': preview}">
@@ -58,7 +57,7 @@
                             <div class="code-line child-line child-3">&lt;/p&gt;</div>
                             <div class="code-line child-line child-3">&lt;div class="timeline-vertical__list__content"&gt;</div>
                                 <div class="code-line child-line child-4" ng-if="timelineItem.timelineItemTitle">&lt;p&gt;&lt;strong&gt;{{ timelineItem.timelineItemTitle }}&lt;/strong&gt;&lt;/p&gt;</div>
-                                <div class="code-line child-line child-4">&lt;p&gt;{{ timelineItem.timelineItemText }}&lt;/p&gt;</div>
+                                <div class="code-line child-line child-4" ng-repeat="timelineItemText in timelineItem.timelineItemTexts track by $index">&lt;p&gt;{{ timelineItemText }}&lt;/p&gt;</div>
                             <div class="code-line child-line child-3">&lt;/div&gt;</div>
                         <div class="code-line child-line child-2">&lt;/li&gt;</div>
                     </ng-container>
@@ -84,7 +83,8 @@
                         </p>
                         <div class="timeline-vertical__list__content">
                             <p ng-if="timelineItem.timelineItemTitle"><strong>{{ timelineItem.timelineItemTitle }}</strong></p>
-                            <p>{{ timelineItem.timelineItemText }}</p>
+
+                            <p ng-repeat="timelineItemText in timelineItem.timelineItemTexts track by $index">{{ timelineItemText }}</p>
                         </div>
                     </li>
                 </ul>

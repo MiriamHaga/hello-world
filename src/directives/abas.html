@@ -36,7 +36,7 @@
     </div>
     <div class="form-group">
         <label for="tabText" required>Conteúdo da aba</label>
-        <textarea id="tabText" class="form-control" ng-model="tabText"></textarea>
+        <textarea id="tabText" class="form-control" ng-model="tabTexts" ng-list="&#10;" ng-trim="false"></textarea>
     </div>
     <div class="form-group">
         <button class="btn btn-primary btn-block" ng-click="addTab()">Adicionar item</button>
@@ -87,7 +87,7 @@
                                     <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
                                 </ng-container>
                                     <div class="code-line child-line child-4">&lt;h4 class="sr-only" id="gal{{ tabsId }}content{{ $index }}"&gt;{{ tabItem.tabItemTitle }}&lt;/h4&gt;</div>
-                                    <div class="code-line child-line child-4">&lt;p&gt;{{ tabItem.tabItemText }}&lt;/p&gt;</div>
+                                    <div class="code-line child-line child-4" ng-repeat="tabItemText in tabItem.tabItemTexts track by $index">&lt;p&gt;{{ tabItemText }}&lt;/p&gt;</div>
                                     <!-- navegacao acessibilidade -->
                                     <div class="code-line child-line child-4" ng-if="$index == 0">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable"&gt;Ir para próxima aba.&lt;/a&gt;</div>
                                     <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Voltar para aba anterior.&lt;/a&gt;</div>
@@ -126,7 +126,7 @@
                                     <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
                                 </ng-container>
                                 <div class="code-line child-line child-4">&lt;h4 class="sr-only" id="gal{{ tabsId }}content{{ $index }}"&gt;{{ tabItem.tabItemTitle }}&lt;/h4&gt;</div>
-                                <div class="code-line child-line child-4">&lt;p&gt;{{ tabItem.tabItemText }}&lt;/p&gt;</div>
+                                <div class="code-line child-line child-4" ng-repeat="tabItemText in tabItem.tabItemTexts track by $index">&lt;p&gt;{{ tabItemText }}&lt;/p&gt;</div>
                                 <!-- navegacao acessibilidade -->
                                 <div class="code-line child-line child-4" ng-if="$index == 0">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable"&gt;Ir para próxima aba.&lt;/a&gt;</div>
                                 <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Voltar para aba anterior.&lt;/a&gt;</div>
@@ -168,7 +168,7 @@
                                     <div class="code-line child-line child-3">&lt;div role="tabpanel" class="tab-pane" id="gal{{ tabsId }}{{ $index }}"&gt;</div>
                                 </ng-container>
                                 <div class="code-line child-line child-4">&lt;h4 class="sr-only" id="gal{{ tabsId }}content{{ $index }}"&gt;{{ tabItem.tabItemTitle }}&lt;/h4&gt;</div>
-                                <div class="code-line child-line child-4">&lt;p&gt;{{ tabItem.tabItemText }}&lt;/p&gt;</div>
+                                <div class="code-line child-line child-4" ng-repeat="tabItemText in tabItem.tabItemTexts track by $index">&lt;p&gt;{{ tabItemText }}&lt;/p&gt;</div>
                                 <!-- navegacao acessibilidade -->
                                 <div class="code-line child-line child-4" ng-if="$index == 0">&lt;a href="#gal{{ tabsId }}{{ $index + 1 }}" data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable"&gt;Ir para próxima aba.&lt;/a&gt;</div>
                                 <div class="code-line child-line child-4" ng-if="$index > 0 && $index < tabItems.length - 1">&lt;a href="#gal{{ tabsId }}{{ $index - 1 }}" data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable"&gt;Voltar para aba anterior.&lt;/a&gt;</div>
@@ -205,7 +205,7 @@
                         <div class="tab-content">
                             <div ng-repeat="tabItem in tabItems track by $index" role="tabpanel" class="tab-pane" ng-class="{'active': $index == 0 }" ng-attr-id="gal{{ tabsId }}{{ $index }}">
                                 <h4 class="sr-only" ng-attr-id="gal{{ tabsId }}content{{ $index }}">{{ tabItem.tabItemTitle }}</h4>
-                                <p>{{ tabItem.tabItemText }}</p>
+                                <p ng-repeat="tabItemText in tabItem.tabItemTexts track by $index">{{ tabItemText }}</p>
                                 <!-- navegacao acessibilidade -->
                                 <a ng-if="$index == 0" ng-href="#gal{{ tabsId }}{{ $index + 1 }}" ng-attr-data-tab="gal{{ tabsId }}{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable">Ir para próxima aba.</a>
                                 <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#gal{{ tabsId }}{{ $index - 1 }}" ng-attr-data-tab="gal{{ tabsId }}{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Voltar para aba anterior.</a>
@@ -230,7 +230,7 @@
                         <div class="tab-content">
                             <div ng-repeat="tabItem in tabItems track by $index" role="tabpanel" class="tab-pane" ng-class="{'active': $index == 0 }" ng-attr-id="galvert{{ $index }}">
                                 <h4 class="sr-only" ng-attr-id="galvertcontent{{ $index }}">{{ tabItem.tabItemTitle }}</h4>
-                                <p>{{ tabItem.tabItemText }}</p>
+                                <p ng-repeat="tabItemText in tabItem.tabItemTexts track by $index">{{ tabItemText }}</p>
                                 <!-- navegacao acessibilidade -->
                                 <a ng-if="$index == 0" ng-href="#galvert{{ $index + 1 }}" ng-attr-data-tab="galvert{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable">Ir para próxima aba.</a>
                                 <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#galvert{{ $index - 1 }}" ng-attr-data-tab="galvert{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Voltar para aba anterior.</a>
@@ -257,7 +257,7 @@
                         <div class="tab-content">
                             <div ng-repeat="tabItem in tabItems track by $index" role="tabpanel" class="tab-pane" ng-class="{'active': $index == 0 }" ng-attr-id="galtime{{ $index }}">
                                 <h4 class="sr-only" ng-attr-id="galtimecontent{{ $index }}">{{ tabItem.tabItemTitle }}</h4>
-                                <p>{{ tabItem.tabItemText }}</p>
+                                <p ng-repeat="tabItemText in tabItem.tabItemTexts track by $index">{{ tabItemText }}</p>
                                 <!-- navegacao acessibilidade -->
                                 <a ng-if="$index == 0" ng-href="#galtime{{ $index + 1 }}" ng-attr-data-tab="galtime{{ $index + 1 }}" class="nav-tabs-next sr-only sr-only-focusable">Ir para próxima aba.</a>
                                 <a ng-if="$index > 0 && $index < tabItems.length - 1" ng-href="#galtime{{ $index - 1 }}" ng-attr-data-tab="galtime{{ $index - 1 }}" class="nav-tabs-back sr-only sr-only-focusable">Voltar para aba anterior.</a>

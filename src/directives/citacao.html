@@ -8,7 +8,7 @@
 
     <div class="form-group">
         <label for="citeText" required>Texto</label>
-        <textarea id="citeText" class="form-control" ng-model="citeText"></textarea>
+        <textarea id="citeText" class="form-control" ng-model="citeTexts" ng-list="&#10;" ng-trim="false"></textarea>
     </div>
     <div class="form-group">
         <label for="citeAuthor">Autor</label>
@@ -26,7 +26,11 @@
 
         <div class="code-container">
             <div class="code-line">&lt;blockquote&gt;</div>
-                <div class="code-line child-line">&lt;p&gt;&lt;em&gt;&lt;span class="quote"&gt;"&lt;/span&gt;{{citeText}}&lt;span class="quote"&gt;"&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;</div>
+                <div class="code-line child-line">&lt;p&gt;&lt;em&gt;&lt;span class="quote"&gt;"&lt;/span&gt;</div>
+                    <div class="code-line child-line child-2">&lt;span&gt;</div>
+                        <div class="code-line child-line child-3" ng-repeat="citeText in citeTexts track by $index">{{citeText}} <ng-container ng-if="citeTexts.length > 1 && $index+1 !== citeTexts.length">&lt;br&gt;</ng-container></div>
+                    <div class="code-line child-line child-2">&lt;/span&gt;</div>
+                <div class="code-line child-line">&lt;span class="quote"&gt;"&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;</div>
                 <ng-container ng-if="citeAuthor">
                     <div class="code-line child-line">&lt;footer class="author"&gt;{{citeAuthor}}&lt;/footer&gt;</div>
                 </ng-container>
@@ -43,7 +47,11 @@
     <div class="generated-preview" ng-if="preview">
         <div class="container">
             <blockquote>
-                <p><em><span class="quote">"</span>{{citeText}}<span class="quote">"</span></em></p>
+                <p><em><span class="quote">"</span>
+                    <span ng-repeat="citeText in citeTexts track by $index">
+                        {{citeText}} <br ng-if="citeTexts.length > 1 && $index+1 !== citeTexts.length">
+                    </span>
+                    <span class="quote">"</span></em></p>
                 <footer class="author" ng-if="citeAuthor">{{citeAuthor}}</footer>
             </blockquote>
         </div>

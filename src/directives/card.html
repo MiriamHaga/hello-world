@@ -55,7 +55,7 @@
 
                 <div class="form-group">
                     <label for="cardBackText">Texto</label>
-                    <textarea id="cardBackText" class="form-control" ng-model="cardBackText"></textarea>
+                    <textarea id="cardBackText" class="form-control" ng-model="cardBackTexts" ng-list="&#10;" ng-trim="false"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -105,7 +105,7 @@
                     <div class="code-line child-line child-2">&lt;div class="card__content--back__content"&gt;</div>
                         <div class="code-line child-line child-3" ng-if="cardBackImg == true">&lt;img src="images/img-default.jpg" class="img-responsive" alt=""&gt;</div>
                         <div class="code-line child-line child-3" ng-if="cardBackTitle">&lt;h4&gt;{{cardBackTitle}}&lt;/h4&gt;</div>
-                        <div class="code-line child-line child-3" ng-if="cardBackText">&lt;p&gt;{{cardBackText}}&lt;/p&gt;</div>
+                        <div class="code-line child-line child-3" ng-if="cardBackTexts" ng-repeat="cardBackText in cardBackTexts track by $index">&lt;p&gt;{{cardBackText}}&lt;/p&gt;</div>
                     <div class="code-line child-line child-2">&lt;/div&gt;</div>
                 <div class="code-line child-line">&lt;/div&gt;</div>
                 </ng-container>
@@ -114,7 +114,7 @@
                 <div class="code-line child-line">&lt;div class="card__content"&gt;</div>
                     <div class="code-line child-line child-2" ng-if="cardBackImg == true">&lt;img src="images/img-default.jpg" class="img-responsive" alt=""&gt;</div>
                     <div class="code-line child-line child-2" ng-if="cardBackTitle">&lt;h4&gt;{{cardBackTitle}}&lt;/h4&gt;</div>
-                    <div class="code-line child-line child-2" ng-if="cardBackText">&lt;p&gt;{{cardBackText}}&lt;/p&gt;</div>
+                    <div class="code-line child-line child-2" ng-if="cardBackTexts" ng-repeat="cardBackText in cardBackTexts track by $index">&lt;p&gt;{{cardBackText}}&lt;/p&gt;</div>
                 <div class="code-line child-line">&lt;/div&gt;</div>
                 </ng-container>
             <div class="code-line">&lt;/div&gt;</div>
@@ -141,14 +141,14 @@
                     <div class="card__content--back__content">
                         <img src="images/img-default.jpg" class="img-responsive" alt="" ng-if="cardBackImg == true">
                         <h4 ng-if="cardBackTitle">{{cardBackTitle}}</h4>
-                        <p ng-if="cardBackText">{{cardBackText}}</p>
+                        <p ng-if="cardBackTexts" ng-repeat="cardBackText in cardBackTexts track by $index">{{cardBackText}}</p>
                     </div>
                 </div>
 
                 <div class="card__content" ng-if="cardFlip == false">
                     <img src="images/img-default.jpg" class="img-responsive" alt="" ng-if="cardBackImg == true">
                     <h4 ng-if="cardBackTitle">{{cardBackTitle}}</h4>
-                    <p ng-if="cardBackText">{{cardBackText}}</p>
+                    <p ng-if="cardBackTexts" ng-repeat="cardBackText in cardBackTexts track by $index">{{cardBackText}}</p>
                 </div>
             </div>
         </div>
