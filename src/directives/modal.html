@@ -10,4 +10,122 @@
           - título
           - texto
           -->
+
+    <div class="form-group">
+        <label for="modalLink" required>Texto do link que abrirá a modal</label>
+        <input type="text" id="modalLink" class="form-control" ng-model="modalLink" />
+    </div>
+
+    <div class="form-group">
+        <label for="modalTitle">Título da modal</label>
+        <input type="text" id="modalTitle" class="form-control" ng-model="modalTitle" />
+    </div>
+
+    <div class="form-group">
+        <label for="modalText" required>Conteúdo da modal</label>
+        <textarea id="modalText" class="form-control" ng-model="modalTexts" ng-list="&#10;" ng-trim="false"></textarea>
+    </div>
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="modalId" required>Id do elemento</label>
+                    <input type="number" id="modalId" class="form-control" ng-model="modalId" ng-init="modalId=1" value="1"/>
+                    <p class="text-muted">
+                        <small>Caso tenha mais de um elemento como este na mesma tela é necessário definir um novo id.</small>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="radio" id="modalSm" ng-model="modalSize" value="1" name="modalSize">
+                        <label for="modalSm">Janela pequena</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" id="modalMd" ng-model="modalSize" value="2" ng-init="modalSize='2'" name="modalSize">
+                        <label for="modalMd">Janela média</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" id="modalLg" ng-model="modalSize" value="3" name="modalSize">
+                        <label for="modalLg">Janela grande</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </form>
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <!--<div class="code-line">&lt;blockquote&gt;</div>
+            <div class="code-line child-line">&lt;p&gt;&lt;em&gt;&lt;span class="quote"&gt;"&lt;/span&gt;{{citeText}}&lt;span class="quote"&gt;"&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;</div>
+            <ng-container ng-if="citeAuthor">
+                <div class="code-line child-line">&lt;footer class="author"&gt;{{citeAuthor}}&lt;/footer&gt;</div>
+            </ng-container>
+            <div class="code-line">&lt;/blockquote&gt;</div>-->
+
+            <div class="code-line">&lt;a type="button" class="sr-only-focusable" data-toggle="modal" href="#Janela{{ modalId }}" role="link"&gt;{{ modalLink }}&lt;/a&gt;</div>
+
+            <div class="code-line">&lt;div class="modal fade" id="Janela{{ modalId }}" tabindex="-1" role="dialog" aria-labelledby="ConteudoJanela{{ modalId }}"&gt;</div>
+                <div class="code-line child-line">&lt;div class="modal-dialog <ng-container ng-if="modalSize == 1">modal-sm</ng-container><ng-container ng-if="modalSize == 3">modal-lg</ng-container>" role="document"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div class="modal-content"&gt;</div>
+                        <div class="code-line child-line child-3">&lt;div class="modal-header"&gt;</div>
+                            <div class="code-line child-line child-4">&lt;button type="button" class="close" data-dismiss="modal" aria-label="Fechar"&gt;&lt;span aria-hidden="true"&gt;&times;&lt;/span&gt;&lt;/button&gt;</div>
+                            <div class="code-line child-line child-4" ng-if="modalTitle">&lt;h4 class="modal-title" id="ConteudoJanela{{ modalId }}"&gt;{{ modalTitle }}&lt;/h4&gt;</div>
+                        <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                        <div class="code-line child-line child-3">&lt;div class="modal-body"&gt;</div>
+                            <div class="code-line child-line child-4" ng-repeat="modalText in modalTexts track by $index">&lt;p&gt;{{ modalText }}&lt;/p&gt;</div>
+                            <br>
+                            <div class="code-line child-line child-4">&lt;!--Manter o botão no fim do conteúdo para acessibilidade--&gt;</div>
+                            <div class="code-line child-line child-4">&lt;div class="clearfix"&gt;&lt;/div&gt;</div>
+                            <div class="code-line child-line child-4">&lt;button type="button" class="sr-only sr-only-focusable btn btn-default pull-right" data-dismiss="modal"&gt;Fechar&lt;/button&gt;</div>
+                            <div class="code-line child-line child-4">&lt;div class="clearfix"&gt;&lt;/div&gt;</div>
+                        <div class="code-line child-line child-3">&lt;/div&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+    </div>
+    <div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+            <a type="button" class="sr-only-focusable" data-toggle="modal" href="#Janela{{ modalId }}" role="link">{{ modalLink }}</a>
+
+            <div class="modal fade" id="Janela{{ modalId }}" tabindex="-1" role="dialog" aria-labelledby="ConteudoJanela{{ modalId }}">
+                <div class="modal-dialog" ng-class="{'modal-sm': modalSize == 1, 'modal-lg': modalSize == 3}" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" ng-if="modalTitle" id="ConteudoJanela{{ modalId }}">{{ modalTitle }}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p ng-repeat="modalText in modalTexts track by $index">{{ modalText }}</p>
+
+                            <!--Manter o botão no fim do conteúdo para acessibilidade-->
+                            <div class="clearfix"></div>
+                            <button type="button" class="sr-only sr-only-focusable btn btn-default pull-right" data-dismiss="modal">Fechar</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

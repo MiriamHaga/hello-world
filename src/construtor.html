@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'imageminterativa'">
+<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'modal'">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
       <link href="stylesheets/curso_styles/unslider-dots.css" rel="stylesheet">
     </ng-container>
   </head>
-  <body>
+  <body ng-class="{'previewing': preview}">
 
     <a href="#conteudo" class="sr-only sr-only-focusable">Pular para o conteúdo</a>
 

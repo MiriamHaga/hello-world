@@ -431,3 +431,14 @@ input[type="file"].custom-input-file{
     line-height: 16px;
   }
 }
+
+// Preview adjusts
+.modal-backdrop{
+  display: none;
+}
+
+.previewing{
+  .modal{
+    top:60px;
+  }
+}

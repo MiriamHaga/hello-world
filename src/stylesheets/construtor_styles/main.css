@@ -5212,4 +5212,10 @@ input[type="file"].custom-input-file {
     font-size: 16px;
     line-height: 16px; }
 
+.modal-backdrop {
+  display: none; }
+
+.previewing .modal {
+  top: 60px; }
+
 /*# sourceMappingURL=main.css.map */
