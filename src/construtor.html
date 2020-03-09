@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'tooltip'">
+<html lang="pt"  ng-app="mainApp" ng-controller = "mainController as vm" ng-init="vm.itemMenuActive = 'associacaocolunas'">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,6 +38,10 @@
             </li>
             <li><p><strong>Elementos interativos</strong></p></li>
             <li ng-repeat="element in elements | filter:{interactive: true}">
+              <a ng-attr-href="#content{{ element.name }}" ng-click="vm.itemMenuActive = element.name" ng-class="{'active': vm.itemMenuActive === element.name }">{{ element.title }}</a>
+            </li>
+            <li><p><strong>Modelos de atividades</strong></p></li>
+            <li ng-repeat="element in elements | filter:{activity: true}">
               <a ng-attr-href="#content{{ element.name }}" ng-click="vm.itemMenuActive = element.name" ng-class="{'active': vm.itemMenuActive === element.name }">{{ element.title }}</a>
             </li>
           </ul>
@@ -128,6 +132,11 @@
           <!-- CONTEUDO 7 - TOOLTIP -->
           <div ng-show="vm.itemMenuActive === 'tooltip'" id="contenttooltip">
             <tooltip></tooltip>
+          </div>
+
+          <!-- ATIVIDADE 1 - ASSOCIACAO COLUNAS -->
+          <div ng-show="vm.itemMenuActive === 'associacaocolunas'" id="contentassociacaocolunas">
+            <associacaocolunas></associacaocolunas>
           </div>
         </section>
       </div>

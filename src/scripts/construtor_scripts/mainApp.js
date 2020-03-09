@@ -65,6 +65,10 @@ mainApp.controller('mainController', function($scope) {
         name: "tooltip",
         title: "Tooltip",
         interactive: true
+    }, {
+        name: "associacaocolunas",
+        title: "Associação de colunas",
+        activity: true
     }];
     $scope.element = "";
 
@@ -338,6 +342,61 @@ mainApp.controller('mainController', function($scope) {
             }
         }
     };
+
+    // COLUMNS ASSOCIATION ITENS
+    $scope.associationColItens = [];
+    $scope.associationColAnswersItens = [];
+    $scope.associationColId = 0;
+
+    $scope.addAssociationColItem = function(){
+        if ( $scope.associationCol1Item && $scope.associationCol2Item ){
+            $scope.associationColId++;
+
+            $scope.associationColItens.push({
+                associationColText:$scope.associationCol1Item,
+                associationColAnswerId:$scope.associationColId
+            });
+            $scope.associationColAnswersItens.push({
+                associationColText:$scope.associationCol1Item,
+                associationColAnswer:$scope.associationCol2Item,
+                associationColAnswerId:$scope.associationColId
+            });
+            $scope.associationCol1Item = '';
+            $scope.associationCol2Item = '';
+        }
+    };
+
+    $scope.deleteAssociationCol = function(associationItem){
+        var index = $scope.associationColItens.indexOf(associationItem);
+        $scope.associationColItens.splice(index, 1);
+
+        var indexAnswer = $scope.associationColAnswersItens.indexOf(associationItem);
+        $scope.associationColAnswersItens.splice(indexAnswer, 1);
+    };
+
+    $scope.moveAssociationCol = function(direction, associationItem){
+        var indexAnswer = $scope.associationColAnswersItens.indexOf(associationItem);
+
+        if ( direction === 'up'){
+            if (indexAnswer <= 0){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.associationColAnswersItens.splice(indexAnswer, 1);
+                // Re-add removed value to the previous index
+                $scope.associationColAnswersItens.splice(indexAnswer - 1, 0, removed[0]);
+            }
+        } else {
+            if (indexAnswer >= $scope.associationColAnswersItens.length){
+                return;
+            } else{
+                // Remove value to replace
+                var removed = $scope.associationColAnswersItens.splice(indexAnswer, 1);
+                // Re-add removed value to the previous index
+                $scope.associationColAnswersItens.splice(indexAnswer + 1, 0, removed[0]);
+            }
+        }
+    };
 });
 
 mainApp.filter('trustAsResourceUrl', ['$sce', function ($sce) {
@@ -495,6 +554,15 @@ mainApp.directive("tooltip", function($rootScope) {
     return {
         restrict: "E",
         templateUrl: "directives/tooltip.html",
+        scope: false
+    }
+});
+
+// ASSOCIACAO COLUNAS
+mainApp.directive("associacaocolunas", function($rootScope) {
+    return {
+        restrict: "E",
+        templateUrl: "directives/associacao-colunas.html",
         scope: false
     }
 });

@@ -231,6 +231,53 @@
 
     <button data-toggle="popover" data-placement="right" data-title="" data-content="jjjjtr tytr yrtyrt">gdfg</button>
 
+
+    <p><strong>Associe corretamente os alimentos</strong></p>
+    <div class="quiz-numero">
+      <div class="quiz-numero-conteudo">
+        <div class="pergunta">
+          <ul id="containerDrag">
+            <li class="drag" tabindex="0" aria-grabbed="false" aria-disabled="false" aria-haspopup="true" role="listitem" aria-checked="false" data-type="1" id="drag_1">
+              <span>1</span> <p>arroz</p>
+            </li>
+            <li class="drag" tabindex="0" aria-grabbed="false" aria-disabled="false" aria-haspopup="true" role="listitem" aria-checked="false" data-type="3" id="drag_3">
+              <span>2</span> <p>maçã</p>
+            </li>
+            <li class="drag" tabindex="0" aria-grabbed="false" aria-disabled="false" aria-haspopup="true" role="listitem" aria-checked="false" data-type="4" id="drag_4">
+              <span>3</span> <p>alface</p>
+            </li>
+            <li class="drag" tabindex="0" aria-grabbed="false" aria-disabled="false" aria-haspopup="true" role="listitem" aria-checked="false" data-type="5" id="drag_5">
+              <span>4</span> <p>cenoura</p>
+            </li>
+          </ul>
+        </div>
+        <div class="resposta">
+          <ul id="containerDrop">
+            <li class="drop" tabindex="0" data-type="1" id="drop_1">
+              <span></span><p>verdura</p>
+            </li>
+            <li class="drop" tabindex="0" data-type="2" id="drop_2">
+              <span></span><p>grão</p>
+            </li>
+            <li class="drop" tabindex="0" data-type="3" id="drop_3">
+              <span></span><p>fruta</p>
+            </li>
+            <li class="drop" tabindex="0" data-type="4" id="drop_4">
+              <span></span><p>legume</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="botoesQuiz">
+        <a class="btnQuiz limpar" id="btnLimpar" aria-label="Botão Limpar" tabindex="-1" style="display: none">Limpar</a>
+        <a class="btnQuiz limpar" id="btnRefazer" aria-label="Botão Refazer" tabindex="-1">Refazer</a>
+        <a class="btnQuiz disebled-check" id="btnConferir" aria-label="Botão Conferir" tabindex="0">Conferir</a>
+      </div>
+      <span id="feedClick"></span>
+    </div>
+
+
     <!-- Rodapé -->
     <footer>
       <div class="sr-only">
@@ -245,6 +292,44 @@
     <script src="scripts/curso_scripts/utils.js"></script>
     <script src="scripts/curso_scripts/utils-acessivel.js"></script>
     <script src="scripts/curso_scripts/unslider-min.js"></script>
+
+    <script src="scripts/curso_scripts/atividades/atividade-associacao-colunas.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        /**
+         * @param {Boolean} showBtnConferir - true mostra o botão de conferir no começo da atividade - false esconde o botão
+         * @param {Boolean} showBtnClear - true mostra o botão de limpar no começo da atividade - false esconde o botão
+         * @param {Boolean} showAnswer - true para o usuário quais respostas ele acertou ou errou - false não mostra nem um aviso de acerto ou de erro
+         * @param {Boolean} blockBtnNext - true bloqueia o botão de avançar do curso - false não bloqueia o botão de avançar do curso
+         * @param {Boolean} saveNote - true salva a nota do usuário no scorm do moodle - false não salva a nota do usuário no scorm do moodle
+         * @param {Boolean} makeAttempt - true conta se atividade tera controle de tentativas maxima do usuário - false fica liberado quantidade de tentativas
+         * @param {Boolean} flagSplitTwoColumns - true divide a atividade em duas etapas - false fica atividade normal
+         * @param {Number} note: number - caso tenha uma nota fixa ex: null, 10 ou 5 etec..
+         */
+        var config = {
+          showBtnConferir: true,
+          showBtnClear: true,
+          showAnswer: false,
+          blockBtnNext: false,
+          saveNote: true,
+          makeAttempt: true,
+          flagSplitTwoColumns: false,
+          note: 10
+        };
+
+//A atividade receberá o container de Drag, o de drop e o gabarito
+        new columnAssociation( "containerDrag", "containerDrop", [
+                  "drag_4",
+                  "drag_1",
+                  "drag_3",
+                  "drag_5"
+                ],
+                "Muito bem",
+                "Resposta errada",
+                config
+        );
+      });
+    </script>
 
   </body>
 </html>

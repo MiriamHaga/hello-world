@@ -1,0 +1,202 @@
+﻿<h2>Associação de colunas</h2>
+
+<form>
+    <!-- Campos:
+        - enunciado
+
+        - itens coluna 1
+        - itens coluna 2 (resposta)
+        - ao adicionar, na coluna 2 é permitido mover e excluir item
+
+        - feedback positivo
+        - feedback negativo
+
+        ** parece que id diferencial no caso de mais de 1 item não funcionaria com o script atual
+          -->
+
+    <div class="form-group">
+        <label for="associationColQuestion" required>Enunciado da questão</label>
+        <input type="text" id="associationColQuestion" class="form-control" ng-model="associationColQuestion" />
+    </div>
+
+    <div class="form-group">
+        <label for="associationColMsgRight" required>Feedback positivo</label>
+        <input type="text" id="associationColMsgRight" class="form-control" ng-model="associationColMsgRight" />
+    </div>
+
+    <div class="form-group">
+        <label for="associationColMsgWrong" required>Feedback negativo</label>
+        <input type="text" id="associationColMsgWrong" class="form-control" ng-model="associationColMsgWrong" />
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="associationCol1Item" required>Item coluna 1</label>
+                <input type="text" id="associationCol1Item" class="form-control" ng-model="associationCol1Item" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="associationCol2Item" required>Item coluna 2 (resposta)</label>
+                <input type="text" id="associationCol2Item" class="form-control" ng-model="associationCol2Item" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" ng-click="addAssociationColItem()">Adicionar itens</button>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item d-flex align-items-center" ng-repeat="associationColItem in associationColItens track by $index" style="min-height: 46px;">
+                    <span class="flex-fill"><strong>{{ associationColItem.associationColAnswerId }}</strong> {{ associationColItem.associationColText }}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item d-flex align-items-center" ng-repeat="associationColAnswersItem in associationColAnswersItens track by $index">
+                    <span class="flex-fill">{{ associationColAnswersItem.associationColAnswer }}</span>
+                    <button class="btn btn-default btn-ico" ng-click="deleteAssociationCol(associationColAnswersItem)"><i class="material-icons">delete</i></button>
+                    <button class="btn btn-primary btn-ico" ng-click="moveAssociationCol('up', associationColAnswersItem)"><i class="material-icons">arrow_upward</i></button>
+                    <button class="btn btn-primary btn-ico" ng-click="moveAssociationCol('down', associationColAnswersItem)"><i class="material-icons">arrow_downward</i></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</form>
+
+
+<!-- GENERATED -->
+<div class="generated" ng-class="{'previewing': preview}">
+    <div class="generated-code">
+        <p><strong>Código html</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no lugar correspondente no curso.</small>
+        </p>
+
+        <div class="code-container">
+            <div class="code-line">&lt;p&gt;&lt;strong&gt;{{ associationColQuestion }}&lt;/strong&gt;&lt;/p&gt;</div>
+            <div class="code-line">&lt;div class="quiz-numero"&gt;</div>
+                <div class="code-line child-line">&lt;div class="quiz-numero-conteudo"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div class="pergunta"&gt;</div>
+                        <div class="code-line child-line child-3">&lt;ul id="containerDrag"&gt;</div>
+                            <ng-container ng-repeat="associationColItem in associationColItens track by $index">
+                                <div class="code-line child-line child-4">&lt;li class="drag" tabindex="0" aria-grabbed="false" aria-disabled="false" aria-haspopup="true" role="listitem" aria-checked="false" data-type="{{ associationColItem.associationColAnswerId }}" id="drag_{{ associationColItem.associationColAnswerId }}"&gt;</div>
+                                    <div class="code-line child-line child-5">&lt;span&gt;{{$index+1}}&lt;/span&gt; &lt;p&gt;{{ associationColItem.associationColText }}&lt;/p&gt;</div>
+                                <div class="code-line child-line child-4">&lt;/li&gt;</div>
+                            </ng-container>
+                        <div class="code-line child-line child-3">&lt;/ul&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                    <div class="code-line child-line child-2">&lt;div class="resposta"&gt;</div>
+                        <div class="code-line child-line child-3">&lt;ul id="containerDrop"&gt;</div>
+                            <ng-container ng-repeat="associationColAnswersItem in associationColAnswersItens track by $index">
+                            <div class="code-line child-line child-4">&lt;li class="drop" tabindex="0" data-type="{{$index+1}}" id="drop_{{$index+1}}"&gt;</div>
+                                <div class="code-line child-line child-5">&lt;span&gt;&lt;/span&gt;&lt;p&gt;{{ associationColAnswersItem.associationColAnswer }}&lt;/p&gt;</div>
+                            <div class="code-line child-line child-4">&lt;/li&gt;</div>
+                            </ng-container>
+                        <div class="code-line child-line child-3">&lt;/ul&gt;</div>
+                    <div class="code-line child-line child-2">&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+                <br>
+                <div class="code-line child-line">&lt;div class="botoesQuiz"&gt;</div>
+                    <div class="code-line child-line child-2">&lt;a class="btnQuiz limpar" id="btnLimpar" aria-label="Botão Limpar" tabindex="-1" style="display: none"&gt;Limpar&lt;/a&gt;</div>
+                    <div class="code-line child-line child-2">&lt;a class="btnQuiz limpar" id="btnRefazer" aria-label="Botão Refazer" tabindex="-1"&gt;Refazer&lt;/a&gt;</div>
+                    <div class="code-line child-line child-2">&lt;a class="btnQuiz disebled-check" id="btnConferir" aria-label="Botão Conferir" tabindex="0"&gt;Conferir&lt;/a&gt;</div>
+                <div class="code-line child-line">&lt;/div&gt;</div>
+                <div class="code-line child-line">&lt;span id="feedClick"&gt;&lt;/span&gt;</div>
+            <div class="code-line">&lt;/div&gt;</div>
+        </div>
+
+        <!-- SCRIPT CODE -->
+        <p class="m-top-20"><strong>Código script da atividade</strong></p>
+        <p>
+            <small>Copie o código abaixo e cole no fim do conteúdo da tela, antes do fechamento do fechamento tag 'body'. Dependendo do projeto pode ser necessário ajustar o caminho do script da atividade.</small>
+        </p>
+        <div class="code-container">
+            <div class="code-line">&lt;script src="../../js/atividades/atividade-associacao-colunas.js">&lt;/script&gt;</div>
+            <div class="code-line">&lt;script type="text/javascript"&gt;</div>
+                <div class="code-line child-line">$(document).ready(function() {</div>
+                    <div class="code-line child-line child-2">/**</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} showBtnConferir - true mostra o botão de conferir no começo da atividade - false esconde o botão</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} showBtnClear - true mostra o botão de limpar no começo da atividade - false esconde o botão</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} showAnswer - true para o usuário quais respostas ele acertou ou errou - false não mostra nem um aviso de acerto ou de erro</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} blockBtnNext - true bloqueia o botão de avançar do curso - false não bloqueia o botão de avançar do curso</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} saveNote - true salva a nota do usuário no scorm do moodle - false não salva a nota do usuário no scorm do moodle</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} makeAttempt - true conta se atividade tera controle de tentativas maxima do usuário - false fica liberado quantidade de tentativas</div>
+                    <div class="code-line child-line child-2">* @param {Boolean} flagSplitTwoColumns - true divide a atividade em duas etapas - false fica atividade normal</div>
+                    <div class="code-line child-line child-2">* @param {Number} note: number - caso tenha uma nota fixa ex: null, 10 ou 5 etec..</div>
+                    <div class="code-line child-line child-2">*/</div>
+                    <div class="code-line child-line child-2">var config = {</div>
+                        <div class="code-line child-line child-3">showBtnConferir: true,</div>
+                        <div class="code-line child-line child-3">showBtnClear: true,</div>
+                        <div class="code-line child-line child-3">showAnswer: false,</div>
+                        <div class="code-line child-line child-3">blockBtnNext: false,</div>
+                        <div class="code-line child-line child-3">saveNote: true,</div>
+                        <div class="code-line child-line child-3">makeAttempt: true,</div>
+                        <div class="code-line child-line child-3">flagSplitTwoColumns: false,</div>
+                        <div class="code-line child-line child-3">note: 10</div>
+                    <div class="code-line child-line child-2">};</div>
+                    <br>
+                    <div class="code-line child-line child-2">//A atividade receberá o container de Drag, o de drop e o gabarito</div>
+                    <div class="code-line child-line child-2">new columnAssociation( "containerDrag", "containerDrop", [</div>
+                            <div class="code-line child-line child-4" ng-repeat="associationColAnswersItem in associationColAnswersItens track by $index">"drag_{{ associationColAnswersItem.associationColAnswerId }}"<ng-container ng-if="$index+1 < associationColAnswersItens.length">,</ng-container></div>
+
+                        <div class="code-line child-line child-3">],</div>
+                        <div class="code-line child-line child-3">"{{associationColMsgRight}}",</div>
+                        <div class="code-line child-line child-3">"{{associationColMsgWrong}}",</div>
+                        <div class="code-line child-line child-3">config</div>
+                    <div class="code-line child-line child-2">);</div>
+                <div class="code-line child-line">});</div>
+            <div class="code-line">&lt;/script&gt;</div>
+        </div>
+    </div>
+
+    <p class="text-muted">
+        <small>Esse elemento não possui pré-visualização.</small>
+    </p>
+
+
+    <!--<div class="preview-bar">
+        <p class="preview-bar__title" ng-if="preview">Construtor de elementos <small>(gerador de html)</small></p>
+        <button ng-click="preview = !preview" class="btn btn-preview">
+            <span ng-if="!preview">Preview</span>
+            <i class="material-icons" ng-if="preview">close</i>
+        </button>
+    </div>
+    <div class="generated-preview" ng-if="preview">
+        <div class="container">
+
+            <p><strong>{{ associationColQuestion }}</strong></p>
+            <div class="quiz-numero">
+                <div class="quiz-numero-conteudo">
+                    <div class="pergunta">
+                        <ul id="containerDrag">
+                            <li ng-repeat="associationColAnswersItem in associationColAnswersItens track by $index" class="drag" tabindex="0" aria-grabbed="false" aria-disabled="false" aria-haspopup="true" role="listitem" aria-checked="false" data-type="{{$index+1}}" id="drag_{{$index+1}}">
+                                <span>{{$index+1}}</span> <p>{{ associationColAnswersItem.associationColText }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="resposta">
+                        <ul id="containerDrop">
+                            <li ng-repeat="associationColAnswersItem in associationColAnswersItens track by $index" class="drop" tabindex="0" data-type="{{$index+1}}" id="drop_{{$index+1}}">
+                                <p>{{ associationColAnswersItem.associationColAnswer }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="botoesQuiz">
+                    <a class="btnQuiz limpar" id="btnLimpar" aria-label="Botão Limpar" tabindex="-1" style="display: none">Limpar</a>
+                    <a class="btnQuiz limpar" id="btnRefazer" aria-label="Botão Refazer" tabindex="-1">Refazer</a>
+                    <a class="btnQuiz disebled-check" id="btnConferir" aria-label="Botão Conferir" tabindex="0">Conferir</a>
+                </div>
+                <span id="feedClick"></span>
+            </div>
+
+        </div>
+    </div>-->
+</div>

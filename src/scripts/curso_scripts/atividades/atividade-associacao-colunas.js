@@ -681,7 +681,7 @@ columnAssociation.prototype.feedback = function __feedback(e) {
         this.feedClick.text(labelFeed);
 
         //Flag necessária para exibição do botão refazer ou conferir.
-        this.flagRefazer = false
+        this.flagRefazer = false;
         this.flagActivityComplete = false;
 
         // Anima o alpha do texto de feedback
